@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Hildie Leyser - Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to my portfolio website! 🚀  
+This site showcases my projects in **neuroscience, neurotechnology, and human-computer interaction (HCI)**.  
 
-## Available Scripts
+## 🔗 Live Website
+Check it out here: **[hildieleyser.github.io](https://hildieleyser.github.io/)**  
 
-In the project directory, you can run:
+## 🧠 About Me
+I am a **neuroscience PhD student** interested in **multisensory integration, social cognition, and wearable neurotechnology**.  
+My work bridges neuroscience, bioengineering, and human-centered design to create **real-world applications for mental well-being**.
 
-### `npm start`
+## 🛠️ Technologies Used
+- **Frontend:** React, TailwindCSS  
+- **Backend (if applicable):** Node.js  
+- **Neurotech:** Brain-Computer Interfaces (BCI), EEG, Physiological Sensors  
+- **Other Tools:** GitHub Pages for hosting  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📂 Featured Projects
+### **🧠 Wavelink**
+A **real-time EEG neural synchrony system** for studying inter-brain coupling and collaborative cognition.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### **🎮 Monkey Sea Monkey Doom**
+A **neurofeedback video game** that trains sympathetic nervous system deactivation through immersive play.
 
-### `npm test`
+### **🕶️ Tipsea Dipsea**
+A **VR Stroop task** designed to harness the **groove response** for cognitive and emotional training.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 How to Use This Portfolio
+Simply navigate through the projects and click on any section to learn more.  
 
-### `npm run build`
+## 📝 Future Plans
+- Expand neurotech applications into **wearable devices**  
+- Develop **AI-driven neurofeedback tools**  
+- Explore **HCI applications** for mental health  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+💡 **Want to collaborate or learn more?**  
+📩 Contact me via GitHub or LinkedIn!  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🔗 **[hildieleyser.github.io](https://hildieleyser.github.io/)**  
+🎓 **Currently pursuing a PhD in Neuroscience | Neurotech Innovator**  
