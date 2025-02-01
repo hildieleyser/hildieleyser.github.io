@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/neuraleyser/static/css/main.ac422950.css",
+    "main.js": "/neuraleyser/static/js/main.293585d3.js",
+    "static/js/453.f1a19c99.chunk.js": "/neuraleyser/static/js/453.f1a19c99.chunk.js",
+    "index.html": "/neuraleyser/index.html",
+    "main.ac422950.css.map": "/neuraleyser/static/css/main.ac422950.css.map",
+    "main.293585d3.js.map": "/neuraleyser/static/js/main.293585d3.js.map",
+    "453.f1a19c99.chunk.js.map": "/neuraleyser/static/js/453.f1a19c99.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ac422950.css",
+    "static/js/main.293585d3.js"
+  ]
+}
