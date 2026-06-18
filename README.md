@@ -1,45 +1,27 @@
-# Hildie Leyser - Portfolio
+# Hildelith Leyser — Portfolio
 
-Welcome to my portfolio website! 🚀  
-This site showcases my projects in **neuroscience, neurotechnology, and human-computer interaction (HCI)**.  
+Personal portfolio for Hildelith Leyser, Neuroscientist & Neurotechnologist.
 
-## 🔗 Live Website
-Check it out here: **[hildieleyser.github.io](https://hildieleyser.github.io/)**  
+## Live site
+[hildieleyser.github.io](https://hildieleyser.github.io/)
 
-## 🧠 About Me
-I am a **neuroscience PhD student** interested in **multisensory integration, social cognition, and wearable neurotechnology**.  
-My work bridges neuroscience, bioengineering, and human-centered design to create **real-world applications for mental well-being**.
+## About
+PhD researcher working across social cognition, brain-computer interfaces, wearable
+sensing, robotics, and multimodal AI — from primate social decision-making to
+translational neurotechnology.
 
-## 🛠️ Technologies Used
-- **Frontend:** React, TailwindCSS  
-- **Backend (if applicable):** Node.js  
-- **Neurotech:** Brain-Computer Interfaces (BCI), EEG, Physiological Sensors  
-- **Other Tools:** GitHub Pages for hosting  
+## Sections
+- **Research** — embodied social decision-making, movement as cognition, multisensory social alignment, human–robot distinction
+- **Projects** — Wavelink, Circuit Robot, Auracle, Parkinsync, SSVEP Speller, Tipsea Dipsea, Monkey Sea Monkey Doom, real-time neurofeedback
+- **Ideas** — selected writing and manuscripts
+- **CV** — education, experience, training, skills, awards, and service
 
-## 📂 Featured Projects
-### **🧠 Wavelink**
-A **real-time EEG neural synchrony system** for studying inter-brain coupling and collaborative cognition.
+## Tech
+React (Create React App), Tailwind CSS, Framer Motion. Hosted on GitHub Pages.
 
-### **🎮 Monkey Sea Monkey Doom**
-A **neurofeedback video game** that trains sympathetic nervous system deactivation through immersive play.
-
-### **🕶️ Tipsea Dipsea**
-A **VR Stroop task** designed to harness the **groove response** for cognitive and emotional training.
-
-## 🚀 How to Use This Portfolio
-Simply navigate through the projects and click on any section to learn more.  
-
-## 📝 Future Plans
-- Expand neurotech applications into **wearable devices**  
-- Develop **AI-driven neurofeedback tools**  
-- Explore **HCI applications** for mental health  
-
----
-
-💡 **Want to collaborate or learn more?**  
-📩 Contact me via GitHub or LinkedIn!  
-
----
-
-🔗 **[hildieleyser.github.io](https://hildieleyser.github.io/)**  
-🎓 **Currently pursuing a PhD in Neuroscience | Neurotech Innovator**  
+## Develop
+```bash
+npm install
+npm start      # local dev server
+npm run build  # production build
+```
