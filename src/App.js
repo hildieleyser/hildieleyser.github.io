@@ -85,9 +85,9 @@ const projects = [
   {
     title: 'Real-Time Neurofeedback',
     slug: 'real-time-neurofeedback',
-    tag: 'Open-source tooling',
-    body: 'A Python package and dashboard for real-time neurofeedback from EEG and multimodal physiological data.',
-    github: null
+    tag: 'Neuroloopy · Open-source',
+    body: 'Neuroloopy — a flexible Python package for real-time signal processing and closed-loop neurofeedback from EEG and multimodal physiological data.',
+    github: 'https://github.com/hildieleyser/neuroloopy'
   }
 ];
 
