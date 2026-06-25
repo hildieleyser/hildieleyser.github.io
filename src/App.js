@@ -71,9 +71,10 @@ const projects = [
   {
     title: 'Scream Machine',
     slug: 'scream-machine',
-    tag: 'Craziest Idea Prize · TechBros Hackathon',
-    body: 'A playful neurotech hackathon build that took the Craziest Idea prize at the TechBros Hackathon.',
-    github: null
+    tag: 'Craziest Idea Prize · IC FemHack',
+    body: 'A playful neurotech hackathon build that took the Craziest Idea prize at IC FemHack.',
+    github: null,
+    images: ['/projects/scream-machine.jpeg', '/projects/scream-machine-team.jpeg']
   },
   {
     title: 'Monkey Sea Monkey Doom',
@@ -178,12 +179,14 @@ const contact = {
 const card = 'bg-[#1c1c1c]/80 backdrop-blur-sm rounded-lg shadow-lg p-8 border border-[#2a2a2a]';
 const heading = "font-['Syncopate'] uppercase text-3xl md:text-4xl mb-12 tracking-wide text-[#E5DCC5]";
 
-// Shows the project image if present in /public/projects, otherwise an
-// on-brand gradient tile with the project's initials so cards never look broken.
+// Shows the project image if present in /public/projects (tries .png then
+// .jpg), otherwise an on-brand gradient tile with the project's initials so
+// cards never look broken.
+const projectImageExts = ['png', 'jpg'];
 const ProjectImage = ({ slug, title }) => {
-  const [failed, setFailed] = useState(false);
+  const [extIndex, setExtIndex] = useState(0);
   const initials = title.split(' ').slice(0, 2).map(w => w[0]).join('');
-  if (failed) {
+  if (extIndex >= projectImageExts.length) {
     return (
       <div className="w-full h-44 rounded-md mb-5 flex items-center justify-center bg-gradient-to-br from-[#2a2419] to-[#161616] border border-[#2a2a2a]">
         <span className="font-['Syncopate'] text-2xl text-[#CDA45E]/70">{initials}</span>
@@ -192,13 +195,37 @@ const ProjectImage = ({ slug, title }) => {
   }
   return (
     <img
-      src={`/projects/${slug}.jpg`}
+      src={`/projects/${slug}.${projectImageExts[extIndex]}`}
       alt={title}
-      onError={() => setFailed(true)}
+      onError={() => setExtIndex(i => i + 1)}
       className="w-full h-44 object-cover rounded-md mb-5 border border-[#2a2a2a]"
     />
   );
 };
+
+// For projects with an explicit list of photos: a full-width cover plus a
+// thumbnail row for any additional images.
+const ProjectGallery = ({ images, title }) => (
+  <div className="mb-5">
+    <img
+      src={images[0]}
+      alt={title}
+      className="w-full h-44 object-cover rounded-md border border-[#2a2a2a]"
+    />
+    {images.length > 1 && (
+      <div className="grid grid-cols-3 gap-2 mt-2">
+        {images.slice(1).map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt={`${title} — photo ${i + 2}`}
+            className="w-full h-20 object-cover rounded-md border border-[#2a2a2a]"
+          />
+        ))}
+      </div>
+    )}
+  </div>
+);
 
 const App = () => {
   const canvasRef = useRef(null);
@@ -392,7 +419,9 @@ const App = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
               >
-                <ProjectImage slug={project.slug} title={project.title} />
+                {project.images
+                  ? <ProjectGallery images={project.images} title={project.title} />
+                  : <ProjectImage slug={project.slug} title={project.title} />}
                 <h3 className="font-['Syncopate'] uppercase text-lg mb-2 text-[#CDA45E]">{project.title}</h3>
                 <p className="text-xs uppercase tracking-wide text-[#6f6957] mb-4">{project.tag}</p>
                 <p className="text-[#A69F88] font-light leading-relaxed flex-grow">{project.body}</p>
