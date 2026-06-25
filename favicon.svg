@@ -2,12 +2,15 @@
   <rect x="4" y="4" width="92" height="92" rx="20" fill="rgb(26,26,26)"/>
   <rect x="5.5" y="5.5" width="89" height="89" rx="18.5" fill="none" stroke="rgb(205,164,94)" stroke-width="2.2" opacity="0.85"/>
   <g fill="rgb(205,164,94)">
-    <circle cx="33" cy="27" r="11.5"/>
-    <circle cx="33" cy="73" r="11.5"/>
-    <circle cx="67" cy="27" r="11.5"/>
-    <circle cx="67" cy="73" r="11.5"/>
-    <rect x="24.799999999999997" y="27" width="16.400000000000002" height="46"/>
-    <rect x="58.8" y="27" width="16.400000000000002" height="46"/>
-    <rect x="33" y="42.8" width="34" height="14.399999999999999"/>
+    <rect x="9.40" y="28.00" width="6.20" height="46.00"/>
+    <rect x="28.20" y="28.00" width="6.20" height="46.00"/>
+    <rect x="9.40" y="47.90" width="25.00" height="6.20"/>
+    <circle cx="38.40" cy="70.90" r="2.60"/>
+    <rect x="44.00" y="38.12" width="6.20" height="35.88"/>
+    <rect x="44.00" y="38.12" width="18.00" height="6.20"/>
+    <rect x="44.00" y="51.52" width="14.40" height="6.20"/>
+    <circle cx="66.00" cy="70.90" r="2.60"/>
+    <rect x="71.60" y="28.00" width="6.20" height="46.00"/>
+    <rect x="71.60" y="67.80" width="19.00" height="6.20"/>
   </g>
 </svg>

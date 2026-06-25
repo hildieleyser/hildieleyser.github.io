@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Mail, Linkedin, Github, Download } from 'lucide-react';
+import { Menu, X, Mail, Linkedin, Github, Download, ExternalLink, Gamepad2, Award } from 'lucide-react';
 
 const researchAreas = [
   {
@@ -29,9 +29,12 @@ const projects = [
   {
     title: 'Wavelink',
     slug: 'wavelink',
-    tag: 'NatHACKS · Neurosphere Award',
+    tag: 'NatHACKS 2024 · Neurosphere Award',
     body: 'Real-time dual-EEG hyperscanning platform with custom sensor hardware and Python signal processing to measure inter-brain synchrony during human interaction and neurofeedback.',
-    github: null
+    links: [
+      { label: 'Devpost', url: 'https://devpost.com/software/wavelink' },
+      { label: 'GitHub', url: 'https://github.com/ZijingWu381/WaveLink' }
+    ]
   },
   {
     title: 'Circuit Robot',
@@ -45,7 +48,7 @@ const projects = [
     slug: 'auracle',
     tag: 'Project Motherboard Hackathon Winner · 2026',
     body: 'Closed-loop wearable for olfactory sensing and air filtration, with a companion app, real-time exposure scoring, and AI-based volatile organic compound classification for respiratory health.',
-    github: 'https://github.com/hildieleyser/auracle',
+    links: [{ label: 'GitHub', url: 'https://github.com/hildieleyser/auracle' }],
     images: [
       '/projects/auracle-1.png',
       '/projects/auracle-2.png',
@@ -59,7 +62,7 @@ const projects = [
     slug: 'inkling',
     tag: 'SSVEP Brain-Computer Interface',
     body: 'An SSVEP-based brain-computer interface speller for assistive communication, enabling text entry through visual attention — oriented toward accessible communication and Parkinson’s-related applications.',
-    github: 'https://github.com/hildieleyser/Inkling'
+    links: [{ label: 'GitHub', url: 'https://github.com/hildieleyser/Inkling' }]
   },
   {
     title: 'Parkinsync',
@@ -71,9 +74,11 @@ const projects = [
   {
     title: 'Tipsea Dipsea',
     slug: 'tipsea-dipsea',
-    tag: 'NeuroHack McGill · Industry Prize',
+    tag: 'NeuroHacks 2024 · Industry Prize',
     body: 'Gamified underwater VR environment that harnesses the groove response in a Stroop-style task, using biofeedback for cognitive and emotional training.',
-    github: null
+    links: [
+      { label: 'GitHub', url: 'https://github.com/SzmiSmi/TipseaDipsea_2' }
+    ]
   },
   {
     title: 'Scream Machine',
@@ -86,16 +91,19 @@ const projects = [
   {
     title: 'Monkey Sea Monkey Doom',
     slug: 'monkey-sea-monkey-doom',
-    tag: 'Neurofeedback Game',
-    body: 'An immersive neurofeedback video game that trains sympathetic nervous system deactivation through play.',
-    github: null
+    tag: 'Scientific Game Jam · Neurofeedback Game',
+    body: 'An immersive neurofeedback video game that trains the shift from fight-or-flight to adaptive decision-making, helping players move from stress reactivity to calm.',
+    links: [
+      { label: 'Itch.io', url: 'https://monkeyseamonkeydoom.itch.io/monkey-sea-monkey-doom' },
+      { label: 'GitHub', url: 'https://github.com/klimkam/Scientific-Game-Jam' }
+    ]
   },
   {
     title: 'Real-Time Neurofeedback',
     slug: 'real-time-neurofeedback',
     tag: 'Neuroloopy · Open-source',
     body: 'Neuroloopy — a flexible Python package for real-time signal processing and closed-loop neurofeedback from EEG and multimodal physiological data.',
-    github: 'https://github.com/hildieleyser/neuroloopy'
+    links: [{ label: 'GitHub', url: 'https://github.com/hildieleyser/neuroloopy' }]
   }
 ];
 
@@ -129,7 +137,9 @@ const cv = {
     { when: '2025', what: 'Women in Science Japan ML Summer School', where: 'Tokyo' },
     { when: '2024–2025', what: 'RIKEN Brain Science Training Program', where: 'Tokyo' },
     { when: '2024', what: 'ICPBR Primate Brain Research Summer School', where: 'Shanghai' },
-    { when: '2023', what: 'RIKEN Learning and Imagination Summer Program', where: 'Tokyo' }
+    { when: '2023', what: 'RIKEN Learning and Imagination Summer Program', where: 'Tokyo' },
+    { when: '2022', what: 'RISD Video Game Design & Interactive Systems', where: 'Rhode Island School of Design (Remote)' },
+    { when: '2022', what: 'Methods and Statistics in Social Sciences, Grade A', where: 'University of Amsterdam (Remote)' }
   ],
   experience: [
     { when: '2026–Present', what: 'Head of Research', where: 'Netholabs Ltd, London', note: 'Lead human neuroscience research across multimodal capture, protocol design, and device integration. Built workflows combining EEG, fNIRS, eye tracking, motion capture, IMUs, EMG, and LSL/XDF synchronisation.' },
@@ -144,7 +154,8 @@ const cv = {
     { area: 'Neurotechnology', items: 'EEG, fNIRS, EMG, eye tracking, LSL/XDF, neurofeedback, BCI design, wearables' },
     { area: 'Computer Vision', items: 'DeepLabCut, SLEAP, YOLO, OpenCV, 2D/3D pose estimation, multi-camera tracking' },
     { area: 'Robotics & Hardware', items: 'SO-ARM101, Unitree G1, EMG-controlled systems, 3D printing, sensor integration' },
-    { area: 'Simulation & Design', items: 'Unity 3D, Unreal Engine, Blender, SketchUp, ANSYS HFSS, VR task design' }
+    { area: 'Simulation & Design', items: 'Unity 3D, Unreal Engine, Blender, SketchUp, ANSYS HFSS, VR task design' },
+    { area: 'Data Analysis', items: 'Time-series analysis, HRV, signal processing, Bayesian and mixed models, neuroimaging workflows, dashboard development' }
   ],
   writing: [
     'Leyser, H. et al. Social context reshapes exploration and reward valuation in a 3D macaque foraging task (in prep).',
@@ -154,27 +165,53 @@ const cv = {
   ],
   talks: [
     '2026 — British Neuroscience Association AI Symposium: neurotechnology and social cognition.',
-    '2025 — Co-Creation International Conference, Tokyo: neural mechanisms of social behaviour.',
+    '2025 — Co-Creation International Conference, Tokyo: InterAction — neural mechanisms of social behaviour.',
     '2024 — Japanese Neuroscience Society, Fukuoka: embodied decision-making and 3D foraging.',
-    '2024 — COSYNE, Lisbon: movement patterns as cognitive nodes.',
-    '2024 — ICPBR Summer School, Shanghai: sociability, hierarchy, and reward.'
+    '2024 — COSYNE, Lisbon: unveiling movement patterns as cognitive nodes.',
+    '2024 — ICPBR Summer School, Shanghai: sociability, hierarchy, and reward.',
+    '2024 — QBIN Scientific Day, Montreal: integrating movement and decision-making, an embodied cross-species approach.',
+    '2024 — British Neuroscience Association, Online: embodied foraging, explore versus exploit social decision-making.',
+    '2024 — Canadian Biomedical Engineering Conference: Parkinsync design, McGill Biomechanics Society.'
+  ],
+  invited: [
+    '2024 — Zatorre Lab Journal Club, Montreal: rhythm and syncopation, movement as social communication.',
+    '2024 — Integrate and Fire Seminar Series, McGill: Untangling Sex and Gender in Neuroscience (host and chair).',
+    '2024 — Non-Human Primates Journal Club, McGill: behavioural acquisition and deep learning of explore/exploit paradigms.',
+    '2025–Present — Python tutor for neuroscience, machine learning, data analysis, and creative BCI projects.'
   ],
   awards: [
     '2026 — Cambridge NeuroWorks What If Fellowship (ARIA)',
     '2026 — Project Motherboard Hackathon Winner (Auracle)',
     '2025 — Hugging Face LeRobot Worldwide Hackathon Winner (Circuit Robot)',
     '2025 — UCSF-CBS Young Investigator Exchange Travel Award',
+    '2025 — Japanese Neural Network Society Travel Grant (JNNS Winter Workshop)',
     '2024–2025 — RIKEN International Program Fellowship',
+    '2024–2025 — Graduate Mobility Award, McGill University',
     '2024 — Neurosphere natHACKS Award',
     '2024 — Silicio Labs Industry Partner Prize (VR)',
+    '2024 — Quebec Bioimaging Travel Award',
+    '2024 — International Center for Primate Brain Research Award (full internship funding)',
+    '2024 — COSYNE New Attendee Travel Grant',
+    '2023–2024 — McGill University IPN Recruitment Award',
+    '2023–2027 — McGill University International Fee Waiver',
+    '2023 — Women in Memory Research Award (Ruhr University)',
     '2023 — Postgraduate Student Essay Competition Winner'
   ],
   service: [
-    '2024–Present — COSYNE Diversity and Inclusion Committee',
+    '2026–Present — Head of Research, Netholabs: coordination across research, engineering, AI, and data teams',
+    '2024–Present — COSYNE Diversity and Inclusion Committee (selected internationally)',
+    '2024–Present — Team leader and technical contributor across neurotech, robotics, and AI hackathons',
     '2023–2024 — Senior Project Advisor, McGill Biomechanics Society',
-    '2023–2024 — Vice President, McGill Care Through Tech',
-    '2025–Present — Python tutor for neuroscience, ML, and creative BCI projects'
-  ]
+    '2023–2024 — Vice President, McGill Care Through Tech'
+  ],
+  collaboration: [
+    { where: 'United Kingdom', what: 'Netholabs research leadership, Cambridge NeuroWorks fellowship, Royal Holloway MSc, Oxford BA, public neuroscience consulting.' },
+    { where: 'Japan', what: 'RIKEN Center for Brain Science doctoral research: primate social cognition, neuroimaging, machine learning training.' },
+    { where: 'Canada', what: 'McGill PhD research, neurotechnology hackathons, biomechanics and BCI projects.' },
+    { where: 'China', what: 'International Center for Primate Brain Research training in primate neuroscience and histological methods.' },
+    { where: 'United States', what: 'Neurohackademy training, UCSF-CBS Young Investigator Exchange.' }
+  ],
+  languages: 'English (native) · French (professional) · Spanish (professional) · German (conversational) · Japanese (basic)'
 };
 
 const contact = {
@@ -225,7 +262,7 @@ const ProjectGallery = ({ images, title }) => (
           <img
             key={src}
             src={src}
-            alt={`${title} — photo ${i + 2}`}
+            alt={`${title} — view ${i + 2}`}
             className="w-full h-20 object-cover rounded-md border border-[#2a2a2a]"
           />
         ))}
@@ -432,15 +469,26 @@ const App = () => {
                 <h3 className="font-['Syncopate'] uppercase text-lg mb-2 text-[#CDA45E]">{project.title}</h3>
                 <p className="text-xs uppercase tracking-wide text-[#6f6957] mb-4">{project.tag}</p>
                 <p className="text-[#A69F88] font-light leading-relaxed flex-grow">{project.body}</p>
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 mt-6 text-sm text-[#CDA45E] hover:text-[#E5DCC5] transition-colors"
-                  >
-                    <Github size={16} /> View on GitHub
-                  </a>
+                {project.links && project.links.length > 0 && (
+                  <div className="flex flex-wrap gap-x-5 gap-y-2 mt-6">
+                    {project.links.map(link => {
+                      const Icon = link.label === 'GitHub' ? Github
+                        : link.label === 'Itch.io' ? Gamepad2
+                        : link.label === 'Devpost' ? Award
+                        : ExternalLink;
+                      return (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-[#CDA45E] hover:text-[#E5DCC5] transition-colors"
+                        >
+                          <Icon size={16} /> {link.label}
+                        </a>
+                      );
+                    })}
+                  </div>
                 )}
               </motion.div>
             ))}
@@ -557,10 +605,35 @@ const App = () => {
             </div>
 
             <div className={card}>
+              <h3 className="font-['Syncopate'] uppercase text-xl mb-6 text-[#CDA45E]">Invited Talks & Teaching</h3>
+              <ul className="space-y-3 text-[#A69F88] font-light text-sm">
+                {cv.invited.map(t => <li key={t}>{t}</li>)}
+              </ul>
+            </div>
+
+            <div className={card}>
               <h3 className="font-['Syncopate'] uppercase text-xl mb-6 text-[#CDA45E]">Leadership & Service</h3>
               <ul className="space-y-2 text-[#A69F88] font-light text-sm">
                 {cv.service.map(s => <li key={s}>{s}</li>)}
               </ul>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className={card}>
+                <h3 className="font-['Syncopate'] uppercase text-xl mb-6 text-[#CDA45E]">International Collaboration</h3>
+                <div className="space-y-4">
+                  {cv.collaboration.map(c => (
+                    <div key={c.where}>
+                      <p className="text-[#E5DCC5] text-sm mb-1">{c.where}</p>
+                      <p className="text-[#A69F88] font-light text-sm">{c.what}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className={card}>
+                <h3 className="font-['Syncopate'] uppercase text-xl mb-6 text-[#CDA45E]">Languages</h3>
+                <p className="text-[#A69F88] font-light text-sm leading-relaxed">{cv.languages}</p>
+              </div>
             </div>
           </div>
         </section>
