@@ -45,7 +45,14 @@ const projects = [
     slug: 'auracle',
     tag: 'Project Motherboard Hackathon Winner · 2026',
     body: 'Closed-loop wearable for olfactory sensing and air filtration, with a companion app, real-time exposure scoring, and AI-based volatile organic compound classification for respiratory health.',
-    github: 'https://github.com/hildieleyser/auracle'
+    github: 'https://github.com/hildieleyser/auracle',
+    images: [
+      '/projects/auracle-1.png',
+      '/projects/auracle-2.png',
+      '/projects/auracle-3.png',
+      '/projects/auracle-4.png',
+      '/projects/auracle-5.png'
+    ]
   },
   {
     title: 'Inkling',
