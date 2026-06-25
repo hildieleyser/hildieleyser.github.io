@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Mail, Linkedin, Github, Download, ExternalLink, Gamepad2, Award } from 'lucide-react';
 
 const researchAreas = [
@@ -31,6 +31,7 @@ const projects = [
     slug: 'wavelink',
     tag: 'NatHACKS 2024 · Neurosphere Award',
     body: 'Real-time dual-EEG hyperscanning platform with custom sensor hardware and Python signal processing to measure inter-brain synchrony during human interaction and neurofeedback.',
+    images: ['/projects/wavelink.png'],
     links: [
       { label: 'Devpost', url: 'https://devpost.com/software/wavelink' },
       { label: 'GitHub', url: 'https://github.com/ZijingWu381/WaveLink' }
@@ -76,6 +77,7 @@ const projects = [
     slug: 'tipsea-dipsea',
     tag: 'NeuroHacks 2024 · Industry Prize',
     body: 'Gamified underwater VR environment that harnesses the groove response in a Stroop-style task, using biofeedback for cognitive and emotional training.',
+    images: ['/projects/tipsea-dipsea.png'],
     links: [
       { label: 'GitHub', url: 'https://github.com/SzmiSmi/TipseaDipsea_2' }
     ]
@@ -93,6 +95,7 @@ const projects = [
     slug: 'monkey-sea-monkey-doom',
     tag: 'Scientific Game Jam · Neurofeedback Game',
     body: 'An immersive neurofeedback video game that trains the shift from fight-or-flight to adaptive decision-making, helping players move from stress reactivity to calm.',
+    images: ['/projects/monkey-sea-monkey-doom.png'],
     links: [
       { label: 'Itch.io', url: 'https://monkeyseamonkeydoom.itch.io/monkey-sea-monkey-doom' },
       { label: 'GitHub', url: 'https://github.com/klimkam/Scientific-Game-Jam' }
@@ -223,57 +226,167 @@ const contact = {
 const card = 'bg-[#1c1c1c]/80 backdrop-blur-sm rounded-lg shadow-lg p-8 border border-[#2a2a2a]';
 const heading = "font-['Syncopate'] uppercase text-3xl md:text-4xl mb-12 tracking-wide text-[#E5DCC5]";
 
-// Shows the project image if present in /public/projects (tries .png then
-// .jpg), otherwise an on-brand gradient tile with the project's initials so
-// cards never look broken.
-const projectImageExts = ['png', 'jpg'];
-const ProjectImage = ({ slug, title }) => {
-  const [extIndex, setExtIndex] = useState(0);
-  const initials = title.split(' ').slice(0, 2).map(w => w[0]).join('');
-  if (extIndex >= projectImageExts.length) {
+const linkIcon = (label) =>
+  label === 'GitHub' ? Github
+  : label === 'Itch.io' ? Gamepad2
+  : label === 'Devpost' ? Award
+  : ExternalLink;
+
+// Cover visual for a project card: first image if present, otherwise an
+// on-brand gradient tile with the project's initials so cards never look broken.
+const ProjectCover = ({ project, className }) => {
+  const initials = project.title.split(' ').slice(0, 2).map(w => w[0]).join('');
+  if (project.images && project.images.length) {
     return (
-      <div className="w-full h-44 rounded-md mb-5 flex items-center justify-center bg-gradient-to-br from-[#2a2419] to-[#161616] border border-[#2a2a2a]">
-        <span className="font-['Syncopate'] text-2xl text-[#CDA45E]/70">{initials}</span>
-      </div>
+      <img
+        src={project.images[0]}
+        alt={project.title}
+        loading="lazy"
+        className={`object-cover ${className}`}
+      />
     );
   }
   return (
-    <img
-      src={`/projects/${slug}.${projectImageExts[extIndex]}`}
-      alt={title}
-      onError={() => setExtIndex(i => i + 1)}
-      className="w-full h-44 object-cover rounded-md mb-5 border border-[#2a2a2a]"
-    />
+    <div className={`flex items-center justify-center bg-gradient-to-br from-[#2a2419] to-[#161616] ${className}`}>
+      <span className="font-['Syncopate'] text-3xl text-[#CDA45E]/70">{initials}</span>
+    </div>
   );
 };
 
-// For projects with an explicit list of photos: a full-width cover plus a
-// thumbnail row for any additional images.
-const ProjectGallery = ({ images, title }) => (
-  <div className="mb-5">
-    <img
-      src={images[0]}
-      alt={title}
-      className="w-full h-44 object-cover rounded-md border border-[#2a2a2a]"
-    />
-    {images.length > 1 && (
-      <div className="grid grid-cols-3 gap-2 mt-2">
-        {images.slice(1).map((src, i) => (
-          <img
-            key={src}
-            src={src}
-            alt={`${title} — view ${i + 2}`}
-            className="w-full h-20 object-cover rounded-md border border-[#2a2a2a]"
-          />
-        ))}
+// Superorganism-style 3D card: a perspective wrapper with a preserve-3d inner
+// surface that tilts toward the cursor, lifts, and catches a gold gloss. The
+// inner content is pushed forward on the Z axis for a parallax feel.
+const TiltCard = ({ children, onClick, ariaLabel }) => {
+  const cardRef = useRef(null);
+  const glowRef = useRef(null);
+
+  const onMove = (e) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    el.style.transform =
+      `perspective(900px) rotateX(${(0.5 - py) * 9}deg) rotateY(${(px - 0.5) * 11}deg) scale(1.035)`;
+    if (glowRef.current) {
+      glowRef.current.style.opacity = '1';
+      glowRef.current.style.background =
+        `radial-gradient(600px circle at ${px * 100}% ${py * 100}%, rgba(205,164,94,0.16), transparent 42%)`;
+    }
+  };
+  const onLeave = () => {
+    const el = cardRef.current;
+    if (el) el.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)';
+    if (glowRef.current) glowRef.current.style.opacity = '0';
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      onClick={onClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
+      role="button"
+      tabIndex={0}
+      aria-label={ariaLabel}
+      style={{ transition: 'transform 0.3s ease-out', transformStyle: 'preserve-3d', willChange: 'transform' }}
+      className="relative cursor-pointer rounded-lg border border-[#2a2a2a] bg-[#1c1c1c]/80 backdrop-blur-sm shadow-lg overflow-hidden focus:outline-none focus:ring-1 focus:ring-[#CDA45E]/60"
+    >
+      <div style={{ transform: 'translateZ(40px)', transformStyle: 'preserve-3d' }}>
+        {children}
       </div>
-    )}
-  </div>
-);
+      <div
+        ref={glowRef}
+        className="pointer-events-none absolute inset-0"
+        style={{ opacity: 0, transition: 'opacity 0.3s ease-out' }}
+      />
+    </div>
+  );
+};
+
+// Full-detail modal opened when a project card is clicked.
+const ProjectModal = ({ project, onClose }) => {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [onClose]);
+
+  if (!project) return null;
+  const images = project.images || [];
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-50 flex items-start md:items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-sm overflow-y-auto"
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="relative w-full max-w-3xl my-8 bg-[#161616] border border-[#2a2a2a] rounded-xl shadow-2xl"
+        initial={{ opacity: 0, y: 30, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20, scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-[#1c1c1c]/90 text-[#E5DCC5] hover:text-[#CDA45E] transition-colors"
+        >
+          <X size={20} />
+        </button>
+
+        <div className="p-7 md:p-10">
+          <h3 className="font-['Syncopate'] uppercase text-2xl md:text-3xl text-[#CDA45E] mb-2">{project.title}</h3>
+          <p className="text-xs uppercase tracking-wide text-[#6f6957] mb-6">{project.tag}</p>
+          <p className="text-[#A69F88] font-light leading-relaxed mb-8">{project.body}</p>
+
+          {images.length > 0 && (
+            <div className="space-y-4 mb-8">
+              {images.map((src, i) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={`${project.title} — view ${i + 1}`}
+                  loading="lazy"
+                  className="w-full rounded-lg border border-[#2a2a2a]"
+                />
+              ))}
+            </div>
+          )}
+
+          {project.links && project.links.length > 0 && (
+            <div className="flex flex-wrap gap-x-6 gap-y-3 pt-2 border-t border-[#2a2a2a] mt-2">
+              {project.links.map(link => {
+                const Icon = linkIcon(link.label);
+                return (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 mt-5 text-sm text-[#CDA45E] hover:text-[#E5DCC5] transition-colors"
+                  >
+                    <Icon size={16} /> {link.label}
+                  </a>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const App = () => {
   const canvasRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeProject, setActiveProject] = useState(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -454,42 +567,26 @@ const App = () => {
           <motion.h2 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} className={heading}>
             Projects
           </motion.h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <p className="text-[#6f6957] text-sm font-light mb-10 -mt-6">Tap any card for the full story, photos, and links.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ perspective: '1200px' }}>
             {projects.map(project => (
               <motion.div
                 key={project.title}
-                className={`${card} flex flex-col`}
-                whileHover={{ scale: 1.02 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
               >
-                {project.images
-                  ? <ProjectGallery images={project.images} title={project.title} />
-                  : <ProjectImage slug={project.slug} title={project.title} />}
-                <h3 className="font-['Syncopate'] uppercase text-lg mb-2 text-[#CDA45E]">{project.title}</h3>
-                <p className="text-xs uppercase tracking-wide text-[#6f6957] mb-4">{project.tag}</p>
-                <p className="text-[#A69F88] font-light leading-relaxed flex-grow">{project.body}</p>
-                {project.links && project.links.length > 0 && (
-                  <div className="flex flex-wrap gap-x-5 gap-y-2 mt-6">
-                    {project.links.map(link => {
-                      const Icon = link.label === 'GitHub' ? Github
-                        : link.label === 'Itch.io' ? Gamepad2
-                        : link.label === 'Devpost' ? Award
-                        : ExternalLink;
-                      return (
-                        <a
-                          key={link.url}
-                          href={link.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 text-sm text-[#CDA45E] hover:text-[#E5DCC5] transition-colors"
-                        >
-                          <Icon size={16} /> {link.label}
-                        </a>
-                      );
-                    })}
+                <TiltCard onClick={() => setActiveProject(project)} ariaLabel={`Open ${project.title} details`}>
+                  <ProjectCover project={project} className="w-full h-44" />
+                  <div className="p-7">
+                    <h3 className="font-['Syncopate'] uppercase text-lg mb-2 text-[#CDA45E]">{project.title}</h3>
+                    <p className="text-xs uppercase tracking-wide text-[#6f6957] mb-4">{project.tag}</p>
+                    <p className="text-[#A69F88] font-light leading-relaxed line-clamp-3">{project.body}</p>
+                    <span className="inline-flex items-center gap-1 mt-5 text-sm text-[#CDA45E]">
+                      View details <span aria-hidden="true">→</span>
+                    </span>
                   </div>
-                )}
+                </TiltCard>
               </motion.div>
             ))}
           </div>
@@ -647,6 +744,12 @@ const App = () => {
           <p className="text-[#6f6957] text-sm font-light">Hildelith Leyser · Neuroscientist & Neurotechnologist</p>
         </footer>
       </div>
+
+      <AnimatePresence>
+        {activeProject && (
+          <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
