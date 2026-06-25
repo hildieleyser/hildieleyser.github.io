@@ -31,7 +31,7 @@ const projects = [
     slug: 'wavelink',
     tag: 'NatHACKS 2024 · Neurosphere Award',
     body: 'Real-time dual-EEG hyperscanning platform with custom sensor hardware and Python signal processing to measure inter-brain synchrony during human interaction and neurofeedback.',
-    images: ['/projects/wavelink.png'],
+    images: ['/projects/wavelink.png', '/projects/wavelink-diagram.svg'],
     links: [
       { label: 'Devpost', url: 'https://devpost.com/software/wavelink' },
       { label: 'GitHub', url: 'https://github.com/ZijingWu381/WaveLink' }
@@ -40,9 +40,15 @@ const projects = [
   {
     title: 'Circuit Robot',
     slug: 'circuit-robot',
-    tag: 'Hugging Face LeRobot Hackathon Winner · 2025',
-    body: 'Open-hardware robotic manipulation platform on the SO-ARM101 arm for electrical circuit assembly, with real-time computer vision, component recognition, and manipulation control.',
-    github: null
+    tag: 'Hugging Face LeRobot Hackathon Winner · Team Electrify-141 · 2025',
+    body: 'Open-hardware robotic manipulation platform on the SO-ARM101 arm for electrical circuit assembly, with real-time computer vision, component recognition, and manipulation control. The arm picks up a power cell, connects the circuit, and activates the load — automating work that is hazardous for people.',
+    images: [
+      '/projects/circuit-robot.png',
+      '/projects/circuit-robot-step1.png',
+      '/projects/circuit-robot-step2.png',
+      '/projects/circuit-robot-step3.png',
+      '/projects/circuit-robot-diagram.svg'
+    ]
   },
   {
     title: 'Auracle',
@@ -63,6 +69,7 @@ const projects = [
     slug: 'inkling',
     tag: 'SSVEP Brain-Computer Interface',
     body: 'An SSVEP-based brain-computer interface speller for assistive communication, enabling text entry through visual attention — oriented toward accessible communication and Parkinson’s-related applications.',
+    images: ['/projects/inkling-hero.svg', '/projects/inkling-diagram.svg'],
     links: [{ label: 'GitHub', url: 'https://github.com/hildieleyser/Inkling' }]
   },
   {
@@ -70,14 +77,14 @@ const projects = [
     slug: 'parkinsync',
     tag: 'McGill Biomechanics Society',
     body: 'EMG-driven exoskeleton concept for tremor-related motor support in Parkinson’s disease, integrating mechanical and electronic control logic across an interdisciplinary team.',
-    github: null
+    images: ['/projects/parkinsync-hero.svg', '/projects/parkinsync-diagram.svg']
   },
   {
     title: 'Tipsea Dipsea',
     slug: 'tipsea-dipsea',
     tag: 'NeuroHacks 2024 · Industry Prize',
     body: 'Gamified underwater VR environment that harnesses the groove response in a Stroop-style task, using biofeedback for cognitive and emotional training.',
-    images: ['/projects/tipsea-dipsea.png'],
+    images: ['/projects/tipsea-dipsea.png', '/projects/tipsea-dipsea-diagram.svg'],
     links: [
       { label: 'GitHub', url: 'https://github.com/SzmiSmi/TipseaDipsea_2' }
     ]
@@ -86,16 +93,15 @@ const projects = [
     title: 'Scream Machine',
     slug: 'scream-machine',
     tag: 'Craziest Idea Prize · IC FemHack',
-    body: 'A playful neurotech hackathon build that took the Craziest Idea prize at IC FemHack.',
-    github: null,
-    images: ['/projects/scream-machine.jpeg', '/projects/scream-machine-team.jpeg']
+    body: 'A playful neurotech hackathon build that took the Craziest Idea prize at IC FemHack — a hand-built, hand-painted neurofeedback device that guides players from stress reactivity toward calm.',
+    images: ['/projects/scream-machine.jpeg', '/projects/scream-machine-team.jpeg', '/projects/scream-machine-diagram.svg']
   },
   {
     title: 'Monkey Sea Monkey Doom',
     slug: 'monkey-sea-monkey-doom',
     tag: 'Scientific Game Jam · Neurofeedback Game',
     body: 'An immersive neurofeedback video game that trains the shift from fight-or-flight to adaptive decision-making, helping players move from stress reactivity to calm.',
-    images: ['/projects/monkey-sea-monkey-doom.png'],
+    images: ['/projects/monkey-sea-monkey-doom.png', '/projects/monkey-sea-monkey-doom-diagram.svg'],
     links: [
       { label: 'Itch.io', url: 'https://monkeyseamonkeydoom.itch.io/monkey-sea-monkey-doom' },
       { label: 'GitHub', url: 'https://github.com/klimkam/Scientific-Game-Jam' }
@@ -106,6 +112,7 @@ const projects = [
     slug: 'real-time-neurofeedback',
     tag: 'Neuroloopy · Open-source',
     body: 'Neuroloopy — a flexible Python package for real-time signal processing and closed-loop neurofeedback from EEG and multimodal physiological data.',
+    images: ['/projects/neuroloopy-hero.svg', '/projects/neuroloopy-diagram.svg'],
     links: [{ label: 'GitHub', url: 'https://github.com/hildieleyser/neuroloopy' }]
   }
 ];

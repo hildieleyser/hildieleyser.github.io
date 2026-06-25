@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="Verdana, 'Segoe UI', Helvetica, Arial, sans-serif">
+  
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16150f"/>
+      <stop offset="0.55" stop-color="#141414"/>
+      <stop offset="1" stop-color="#100f0c"/>
+    </linearGradient>
+    <linearGradient id="goldg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E7C988"/>
+      <stop offset="1" stop-color="#B6863F"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="0.5" cy="0.42" r="0.75">
+      <stop offset="0.6" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.45"/>
+    </radialGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#CDA45E"/>
+    </marker>
+    <marker id="arrowf" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6f6957"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#vig)"/>
+  <rect x="14" y="14" width="1572" height="872" rx="22" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+  <text x="90" y="108" fill="#CDA45E" font-size="26" letter-spacing="6" font-weight="bold">DUAL-EEG HYPERSCANNING</text>
+  <text x="88" y="178" fill="#E5DCC5" font-size="62" letter-spacing="1" font-weight="bold">Inter-Brain Synchrony</text>
+  <g>
+    <rect x="90" y="300" width="250" height="130" rx="16" fill="#1b1b1b" stroke="#3a352a" stroke-width="2"/>
+    <circle cx="120" cy="334" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
+            <circle cx="120" cy="334" r="2.6" fill="#CDA45E"/>
+    <text x="215" y="367" fill="#E5DCC5" font-size="25" font-weight="bold" text-anchor="middle">Participant A</text>
+    <text x="215" y="397" fill="#A69F88" font-size="19" text-anchor="middle">EEG headset</text>
+  </g>
+<g>
+    <rect x="90" y="540" width="250" height="130" rx="16" fill="#1b1b1b" stroke="#3a352a" stroke-width="2"/>
+    <circle cx="120" cy="574" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
+            <circle cx="120" cy="574" r="2.6" fill="#CDA45E"/>
+    <text x="215" y="607" fill="#E5DCC5" font-size="25" font-weight="bold" text-anchor="middle">Participant B</text>
+    <text x="215" y="637" fill="#A69F88" font-size="19" text-anchor="middle">EEG headset</text>
+  </g>
+<g>
+    <rect x="470" y="420" width="250" height="130" rx="16" fill="#1b1b1b" stroke="#3a352a" stroke-width="2"/>
+    <circle cx="500" cy="454" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
+            <circle cx="500" cy="454" r="2.6" fill="#CDA45E"/>
+    <text x="595" y="487" fill="#E5DCC5" font-size="25" font-weight="bold" text-anchor="middle">Sensor board</text>
+    <text x="595" y="517" fill="#A69F88" font-size="19" text-anchor="middle">Synced acquisition</text>
+  </g>
+<g>
+    <rect x="790" y="420" width="260" height="130" rx="16" fill="#1b1b1b" stroke="#3a352a" stroke-width="2"/>
+    <circle cx="820" cy="454" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
+            <circle cx="820" cy="454" r="2.6" fill="#CDA45E"/>
+    <text x="920" y="487" fill="#E5DCC5" font-size="25" font-weight="bold" text-anchor="middle">Python DSP</text>
+    <text x="920" y="517" fill="#A69F88" font-size="19" text-anchor="middle">Filter · PSD · coherence</text>
+  </g>
+<g>
+    <rect x="1130" y="300" width="260" height="130" rx="16" fill="rgba(205,164,94,0.10)" stroke="#CDA45E" stroke-width="2"/>
+    <circle cx="1160" cy="334" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
+            <circle cx="1160" cy="334" r="2.6" fill="#CDA45E"/>
+    <text x="1260" y="367" fill="#CDA45E" font-size="25" font-weight="bold" text-anchor="middle">Inter-brain sync</text>
+    <text x="1260" y="397" fill="#A69F88" font-size="19" text-anchor="middle">PLV / coherence</text>
+  </g>
+<g>
+    <rect x="1130" y="540" width="260" height="130" rx="16" fill="rgba(205,164,94,0.10)" stroke="#CDA45E" stroke-width="2"/>
+    <circle cx="1160" cy="574" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
+            <circle cx="1160" cy="574" r="2.6" fill="#CDA45E"/>
+    <text x="1260" y="607" fill="#CDA45E" font-size="25" font-weight="bold" text-anchor="middle">Neurofeedback</text>
+    <text x="1260" y="637" fill="#A69F88" font-size="19" text-anchor="middle">Live dashboard</text>
+  </g><path d="M340,365 C410,365 400,485 470,485" fill="none" stroke="#CDA45E" stroke-width="2.4" opacity="0.9" marker-end="url(#arrow)"/><path d="M340,605 C410,605 400,485 470,485" fill="none" stroke="#CDA45E" stroke-width="2.4" opacity="0.9" marker-end="url(#arrow)"/><path d="M720,485 C790,485 720,485 790,485" fill="none" stroke="#CDA45E" stroke-width="2.4" opacity="0.9" marker-end="url(#arrow)"/><path d="M1050,485 C1120,485 1060,365 1130,365" fill="none" stroke="#CDA45E" stroke-width="2.4" opacity="0.9" marker-end="url(#arrow)"/><path d="M1050,485 C1120,485 1060,605 1130,605" fill="none" stroke="#CDA45E" stroke-width="2.4" opacity="0.9" marker-end="url(#arrow)"/><path d="M1130,605 C1010,605 215,550 215,430" fill="none" stroke="#6f6957" stroke-width="2.4" opacity="0.7" marker-end="url(#arrowf)" stroke-dasharray="9 8"/><text x="672.5" y="505.5" fill="#6f6957" font-size="17" text-anchor="middle" font-style="italic">feedback loop</text>
+  <text x="90" y="844" fill="#A69F88" font-size="26" font-style="italic">Two brains, one measured connection.</text>
+  <text x="1510" y="844" fill="#6f6957" font-size="22" text-anchor="end" letter-spacing="3">HILDELITH LEYSER</text>
+</svg>
