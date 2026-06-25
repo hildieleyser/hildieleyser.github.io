@@ -69,7 +69,7 @@ const projects = [
     slug: 'inkling',
     tag: 'SSVEP Brain-Computer Interface',
     body: 'An SSVEP-based brain-computer interface speller for assistive communication, enabling text entry through visual attention — oriented toward accessible communication and Parkinson’s-related applications.',
-    images: ['/projects/inkling-hero.svg', '/projects/inkling-diagram.svg'],
+    images: ['/projects/inkling-diagram.svg'],
     links: [{ label: 'GitHub', url: 'https://github.com/hildieleyser/Inkling' }]
   },
   {
@@ -77,7 +77,7 @@ const projects = [
     slug: 'parkinsync',
     tag: 'McGill Biomechanics Society',
     body: 'EMG-driven exoskeleton concept for tremor-related motor support in Parkinson’s disease, integrating mechanical and electronic control logic across an interdisciplinary team.',
-    images: ['/projects/parkinsync-hero.svg', '/projects/parkinsync-diagram.svg']
+    images: ['/projects/parkinsync-diagram.svg']
   },
   {
     title: 'Tipsea Dipsea',
@@ -112,7 +112,7 @@ const projects = [
     slug: 'real-time-neurofeedback',
     tag: 'Neuroloopy · Open-source',
     body: 'Neuroloopy — a flexible Python package for real-time signal processing and closed-loop neurofeedback from EEG and multimodal physiological data.',
-    images: ['/projects/neuroloopy-hero.svg', '/projects/neuroloopy-diagram.svg'],
+    images: ['/projects/neuroloopy-diagram.svg'],
     links: [{ label: 'GitHub', url: 'https://github.com/hildieleyser/neuroloopy' }]
   }
 ];
