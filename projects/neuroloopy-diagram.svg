@@ -1,72 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="Verdana, 'Segoe UI', Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 820" font-family="'Latin Modern Roman','CMU Serif',Georgia,'Times New Roman',serif">
   
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#16150f"/>
-      <stop offset="0.55" stop-color="#141414"/>
-      <stop offset="1" stop-color="#100f0c"/>
-    </linearGradient>
-    <linearGradient id="goldg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#E7C988"/>
-      <stop offset="1" stop-color="#B6863F"/>
-    </linearGradient>
-    <radialGradient id="vig" cx="0.5" cy="0.42" r="0.75">
-      <stop offset="0.6" stop-color="#000000" stop-opacity="0"/>
-      <stop offset="1" stop-color="#000000" stop-opacity="0.45"/>
-    </radialGradient>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#CDA45E"/>
-    </marker>
-    <marker id="arrowf" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#6f6957"/>
+    <marker id="ah" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse">
+      <path d="M1,1 L11,6 L1,11 L4,6 z" fill="#111111"/>
     </marker>
   </defs>
-  <rect width="1600" height="900" fill="url(#bg)"/>
-  <rect width="1600" height="900" fill="url(#vig)"/>
-  <rect x="14" y="14" width="1572" height="872" rx="22" fill="none" stroke="#2a2a2a" stroke-width="2"/>
-  <text x="90" y="108" fill="#CDA45E" font-size="26" letter-spacing="6" font-weight="bold">NEUROLOOPY · OPEN-SOURCE PYTHON</text>
-  <text x="88" y="178" fill="#E5DCC5" font-size="62" letter-spacing="1" font-weight="bold">A Closed Loop for Any Signal</text>
-  <g>
-    <rect x="90" y="380" width="256" height="150" rx="16" fill="#1b1b1b" stroke="#3a352a" stroke-width="2"/>
-    <circle cx="120" cy="414" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
-            <circle cx="120" cy="414" r="2.6" fill="#CDA45E"/>
-    <text x="218" y="457" fill="#E5DCC5" font-size="25" font-weight="bold" text-anchor="middle">Inputs</text>
-    <text x="218" y="487" fill="#A69F88" font-size="19" text-anchor="middle">EEG · ECG · physio</text>
-  </g>
-    <g>
-    <rect x="381" y="380" width="256" height="150" rx="16" fill="#1b1b1b" stroke="#3a352a" stroke-width="2"/>
-    <circle cx="411" cy="414" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
-            <circle cx="411" cy="414" r="2.6" fill="#CDA45E"/>
-    <text x="509" y="457" fill="#E5DCC5" font-size="25" font-weight="bold" text-anchor="middle">LSL / XDF</text>
-    <text x="509" y="487" fill="#A69F88" font-size="19" text-anchor="middle">Synced streams</text>
-  </g>
-    <g>
-    <rect x="672" y="380" width="256" height="150" rx="16" fill="#1b1b1b" stroke="#3a352a" stroke-width="2"/>
-    <circle cx="702" cy="414" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
-            <circle cx="702" cy="414" r="2.6" fill="#CDA45E"/>
-    <text x="800" y="457" fill="#E5DCC5" font-size="25" font-weight="bold" text-anchor="middle">Processing</text>
-    <text x="800" y="487" fill="#A69F88" font-size="19" text-anchor="middle">Filters · features</text>
-  </g>
-    <g>
-    <rect x="963" y="380" width="256" height="150" rx="16" fill="#1b1b1b" stroke="#3a352a" stroke-width="2"/>
-    <circle cx="993" cy="414" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
-            <circle cx="993" cy="414" r="2.6" fill="#CDA45E"/>
-    <text x="1091" y="457" fill="#E5DCC5" font-size="25" font-weight="bold" text-anchor="middle">Decision</text>
-    <text x="1091" y="487" fill="#A69F88" font-size="19" text-anchor="middle">Targets · rules</text>
-  </g>
-    <g>
-    <rect x="1254" y="380" width="256" height="150" rx="16" fill="rgba(205,164,94,0.10)" stroke="#CDA45E" stroke-width="2"/>
-    <circle cx="1284" cy="414" r="9" fill="none" stroke="#CDA45E" stroke-width="2.5"/>
-            <circle cx="1284" cy="414" r="2.6" fill="#CDA45E"/>
-    <text x="1382" y="457" fill="#CDA45E" font-size="25" font-weight="bold" text-anchor="middle">Feedback</text>
-    <text x="1382" y="487" fill="#A69F88" font-size="19" text-anchor="middle">Audio · visual · haptic</text>
-  </g>
-    <path d="M346,455 C416,455 311,455 381,455" fill="none" stroke="#CDA45E" stroke-width="2.4" opacity="0.9" marker-end="url(#arrow)"/>
-    <path d="M637,455 C707,455 602,455 672,455" fill="none" stroke="#CDA45E" stroke-width="2.4" opacity="0.9" marker-end="url(#arrow)"/>
-    <path d="M928,455 C998,455 893,455 963,455" fill="none" stroke="#CDA45E" stroke-width="2.4" opacity="0.9" marker-end="url(#arrow)"/>
-    <path d="M1219,455 C1289,455 1184,455 1254,455" fill="none" stroke="#CDA45E" stroke-width="2.4" opacity="0.9" marker-end="url(#arrow)"/>
-    <path d="M1382,530 C1382,680 218,680 218,530" fill="none" stroke="#6f6957" stroke-width="2.4" stroke-dasharray="9 8" opacity="0.7" marker-end="url(#arrowf)"/>
-    <text x="800" y="686" fill="#6f6957" font-size="19" text-anchor="middle" font-style="italic">the loop closes</text>
-  <text x="90" y="844" fill="#A69F88" font-size="26" font-style="italic">Modular real-time neurofeedback.</text>
-  <text x="1510" y="844" fill="#6f6957" font-size="22" text-anchor="end" letter-spacing="3">HILDELITH LEYSER</text>
+  <rect width="1600" height="820" fill="#ffffff"/>
+  <text x="800" y="84" font-size="36" font-weight="bold" text-anchor="middle" fill="#111111">Real-time closed-loop neurofeedback</text>
+  <path d="M96,380 L208,380" fill="none" stroke="#111111" stroke-width="2" marker-end="url(#ah)"/><text x="162" y="364" font-size="22" font-style="italic" text-anchor="middle" fill="#111111">r(t)</text><circle cx="235" cy="380" r="27" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+    <line x1="224" y1="380" x2="246" y2="380" stroke="#111111" stroke-width="1.4"/>
+    <line x1="235" y1="369" x2="235" y2="391" stroke="#111111" stroke-width="1.4"/><text x="194" y="370" font-size="30" text-anchor="middle" fill="#111111">+</text><text x="247" y="429" font-size="30" text-anchor="middle" fill="#111111">−</text><path d="M262,380 L345,380" fill="none" stroke="#111111" stroke-width="2" marker-end="url(#ah)"/><text x="303.5" y="364" font-size="22" font-style="italic" text-anchor="middle" fill="#111111">e(t)</text><rect x="345" y="314" width="232" height="132" fill="#ffffff" stroke="#111111" stroke-width="2"/><text x="461" y="374" font-size="27" text-anchor="middle" fill="#111111">Acquisition</text>
+       <text x="461" y="406" font-size="19" font-style="italic" text-anchor="middle" fill="#111111">LSL / XDF</text><rect x="673" y="314" width="232" height="132" fill="#ffffff" stroke="#111111" stroke-width="2"/><text x="789" y="374" font-size="27" text-anchor="middle" fill="#111111">Features</text>
+       <text x="789" y="406" font-size="19" font-style="italic" text-anchor="middle" fill="#111111">filters</text><rect x="1001" y="314" width="232" height="132" fill="#ffffff" stroke="#111111" stroke-width="2"/><text x="1117" y="374" font-size="27" text-anchor="middle" fill="#111111">Decision</text>
+       <text x="1117" y="406" font-size="19" font-style="italic" text-anchor="middle" fill="#111111">rules</text><path d="M577,380 L673,380" fill="none" stroke="#111111" stroke-width="2" marker-end="url(#ah)"/><path d="M905,380 L1001,380" fill="none" stroke="#111111" stroke-width="2" marker-end="url(#ah)"/><path d="M1233,380 L1470,380" fill="none" stroke="#111111" stroke-width="2" marker-end="url(#ah)"/><text x="1400" y="364" font-size="22" font-style="italic" text-anchor="middle" fill="#111111">y(t)</text><circle cx="1383" cy="380" r="4.5" fill="#111111"/><rect x="615" y="546" width="232" height="132" fill="#ffffff" stroke="#111111" stroke-width="2"/><text x="731" y="606" font-size="27" text-anchor="middle" fill="#111111">User</text>
+       <text x="731" y="638" font-size="19" font-style="italic" text-anchor="middle" fill="#111111">physiology</text><path d="M1383,380 L1383,600 L847,600" fill="none" stroke="#111111" stroke-width="2" marker-end="url(#ah)"/><path d="M615,600 L235,600 L235,407" fill="none" stroke="#111111" stroke-width="2" marker-end="url(#ah)"/><text x="1115" y="586" font-size="22" font-style="italic" text-anchor="middle" fill="#111111">measured signal</text>
+  <line x1="120" y1="724" x2="1480" y2="724" stroke="#cccccc" stroke-width="1"/>
+  <text x="120" y="766" font-size="22" fill="#111111"><tspan font-weight="bold">Figure 1:</tspan> <tspan font-style="italic">A modular pipeline streams signals, extracts features, applies rules, and delivers feedback.</tspan></text>
 </svg>
