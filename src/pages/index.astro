@@ -20,17 +20,23 @@ const projects = (await getCollection('projects'))
   <section class="hero">
     <NeuralField />
     <div class="shell hero__inner">
+      <p class="hero__kicker"><span>Hildelith Leyser</span><span>Neurotechnologist</span></p>
+
+      {/* Words sit on a 12-column grid at deliberately uneven positions, so the
+          statement reads as a composition rather than three centred lines. */}
       <h1 class="hero__statement">
-        <span>i turn</span>
-        <span>behaviour</span>
-        <span class="accent">into signal.</span>
+        <span style="--col: 1; --span: 4">I turn</span>
+        <span style="--col: 6; --span: 7">behaviour</span>
+        <span style="--col: 3; --span: 5">into</span>
+        <span style="--col: 8; --span: 5">signal</span>
       </h1>
+
       <div class="hero__foot">
-        <p class="hero__who">Hildelith Leyser <span>{site.role}</span></p>
-        <p class="hero__where">{site.location}</p>
+        <p>{site.location}</p>
+        <p>Head of Research, Netholabs</p>
       </div>
     </div>
-    <span class="scroll-cue" aria-hidden="true">scroll</span>
+    <a class="scroll-cue" href="#work">Enter</a>
   </section>
 
   <!-- ------------------------------------------------------------ Work -->
@@ -95,64 +101,86 @@ const projects = (await getCollection('projects'))
   .hero {
     position: relative;
     overflow: hidden;
-    min-height: 92svh;
+    min-height: calc(100svh - 4.25rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-block: clamp(5rem, 12vw, 9rem) clamp(3rem, 6vw, 5rem);
+    padding-block: clamp(6rem, 14vw, 10rem) clamp(5rem, 9vw, 7rem);
   }
   .hero__inner { position: relative; z-index: 1; }
 
-  .hero__statement {
-    font-size: var(--step-4);
-    line-height: 0.92;
-    letter-spacing: -0.035em;
-    display: grid;
+  .hero__kicker {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: clamp(2.5rem, 7vw, 5rem);
   }
-  .hero__statement .accent { color: var(--accent); }
+
+  .hero__statement {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: clamp(0.1rem, 1.2vw, 0.9rem);
+    font-size: var(--step-4);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+  }
+  .hero__statement span {
+    grid-column: var(--col) / span var(--span);
+    white-space: nowrap;
+  }
 
   .hero__foot {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1rem 2rem;
+    gap: 0.75rem 2rem;
     margin-top: clamp(3rem, 8vw, 6rem);
     padding-top: 1.25rem;
-    border-top: 1px solid var(--border);
-  }
-  .hero__who { color: var(--ink); font-weight: 500; }
-  .hero__who span {
-    color: var(--muted);
-    font-weight: 400;
-    margin-left: 0.6rem;
-  }
-  .hero__where { color: var(--muted); }
-
-  .scroll-cue {
-    position: absolute;
-    left: 50%;
-    bottom: 1.75rem;
-    transform: translateX(-50%);
-    font-size: 0.68rem;
-    font-weight: 500;
+    border-top: 1px solid var(--rule);
+    font-size: 0.7rem;
+    font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
-    animation: drift 2.6s ease-in-out infinite;
   }
-  @keyframes drift {
-    0%, 100% { transform: translate(-50%, 0); opacity: 0.55; }
-    50%      { transform: translate(-50%, 5px); opacity: 1; }
+
+  /* Echoes the reference's Enter affordance without gating the content. */
+  .scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(1.5rem, 4vw, 2.75rem);
+    transform: translateX(-50%);
+    background: var(--white);
+    color: var(--blue);
+    padding: 0.8rem 2.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.25s ease;
+  }
+  .scroll-cue:hover { color: var(--blue); transform: translate(-50%, 3px); }
+
+  /* Below the grid breakpoint the composition collapses to full-width lines. */
+  @media (max-width: 720px) {
+    .hero__statement span { grid-column: 1 / -1; white-space: normal; }
+    .hero__kicker { flex-direction: column; gap: 0.35rem; }
   }
 
   /* ----------------------------------------------------- Capabilities */
-  .caps { margin: 0; border-top: 1px solid var(--border); }
+  .caps { margin: 0; border-top: 1px solid var(--rule); }
   .caps__row {
     display: grid;
     grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
     gap: 0.4rem 2.5rem;
     padding: 1.15rem 0.5rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--rule);
   }
   @media (max-width: 720px) { .caps__row { grid-template-columns: 1fr; } }
   .caps dt {
@@ -160,27 +188,28 @@ const projects = (await getCollection('projects'))
     font-weight: 600;
     letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--white);
   }
   .caps dd { margin: 0; color: var(--muted); }
 
   /* --------------------------------------------------------- Research */
-  .research { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
-  .research li { padding: 1.4rem 0.5rem; border-bottom: 1px solid var(--border); }
+  .research { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  .research li { padding: 1.4rem 0.5rem; border-bottom: 1px solid var(--rule); }
   .research h3 { font-size: clamp(1.4rem, 2.6vw, 1.95rem); margin-bottom: 0.4rem; }
 
   /* ---------------------------------------------------------- Contact */
   .mailto {
     display: block;
+    text-transform: none;
     font-family: var(--font-display);
     font-size: clamp(1.9rem, 6vw, 4.25rem);
     line-height: 1;
     letter-spacing: -0.03em;
-    color: var(--ink);
+    color: var(--white);
     text-decoration: none;
     word-break: break-word;
   }
-  .mailto:hover { color: var(--accent); }
+  .mailto:hover { color: var(--white); }
 
   .currently {
     list-style: none;
@@ -190,7 +219,7 @@ const projects = (await getCollection('projects'))
     gap: 0.5rem;
     color: var(--muted);
   }
-  .currently span { color: var(--accent); font-variant-numeric: tabular-nums; margin-right: 0.5rem; }
+  .currently span { color: var(--white); font-variant-numeric: tabular-nums; margin-right: 0.5rem; }
 
   .contact__links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; }
 </style>

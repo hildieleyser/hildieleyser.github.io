@@ -1,55 +1,46 @@
 /* ------------------------------------------------------------------
    Design tokens
 
-   Light clinical palette: paper ground, near-black ink, one restrained
-   blue accent. Every text colour clears WCAG AA on both the paper
-   background and the white card surface.
-
-   Type pairs a high-contrast display serif with a neutral sans. The
-   serif is display-only, never below ~1.3rem, where its thin strokes
-   would start to break down.
+   Deep blue ground, white type, bold uppercase grotesque set with wide
+   tracking. Every text colour clears WCAG AA on the blue: white 15.4:1,
+   body 9.5:1, muted 6.0:1.
 ------------------------------------------------------------------ */
 :root {
-  --paper:         #f3f1ea;
-  --surface:       #faf9f5;
-  --surface-sunk:  #eae7de;
-  --border:        #d9d4c8;
-  --border-strong: #c3bdae;
+  --blue:        #16166b;  /* the ground */
+  --blue-deep:   #101052;  /* recessed bands */
+  --blue-raised: #1d1d80;  /* cards, hover fills */
+  --rule:        rgba(255, 255, 255, 0.18);
+  --rule-strong: rgba(255, 255, 255, 0.34);
 
-  --ink:           #14161a;  /* 17.4:1 on paper */
-  --body:          #3f4650;  /*  9.1:1 on paper */
-  --muted:         #666c7a;  /*  4.7:1 on cream, 5.0:1 on surface */
+  --white:       #ffffff;  /* 15.4:1 */
+  --body:        #c8c8e6;  /*  9.5:1 */
+  --muted:       #a8a8d4;  /*  6.8:1 */
 
-  --accent:        #2563a8;  /*  5.9:1 on paper, 6.1:1 white-on-accent */
-  --accent-deep:   #1b4a80;
-  --accent-wash:   rgba(37, 99, 168, 0.08);
-
-  --font-display: 'Instrument Serif', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
-  --font-body: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system,
-    'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Archivo Variable', 'Archivo', ui-sans-serif, system-ui,
+    -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: var(--font-body);
   --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
 
-  /* Fluid type scale, 1.24 ratio at both ends */
-  --step--1: clamp(0.80rem, 0.77rem + 0.15vw, 0.875rem);
-  --step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.10rem);
-  --step-1:  clamp(1.20rem, 1.12rem + 0.40vw, 1.45rem);
-  --step-2:  clamp(1.55rem, 1.35rem + 0.95vw, 2.20rem);
-  --step-3:  clamp(2.00rem, 1.62rem + 1.85vw, 3.25rem);
-  --step-4:  clamp(3.00rem, 1.40rem + 7.60vw, 9.00rem);
+  /* Fluid type scale */
+  --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.86rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.08rem);
+  --step-1:  clamp(1.15rem, 1.08rem + 0.36vw, 1.40rem);
+  --step-2:  clamp(1.50rem, 1.28rem + 1.05vw, 2.25rem);
+  --step-3:  clamp(1.90rem, 1.45rem + 2.20vw, 3.40rem);
+  --step-4:  clamp(2.40rem, 1.30rem + 5.40vw, 6.75rem);
 
   --gutter: clamp(1.25rem, 4vw, 4rem);
-  --measure: 68ch;
-  --radius: 8px;
-  --shell: 1180px;
+  --measure: 66ch;
+  --radius: 2px;
+  --shell: 1240px;
 
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
-  /* Sticky header height + breathing room, so anchors do not land under it */
   scroll-padding-top: 6rem;
   -webkit-text-size-adjust: 100%;
 }
@@ -65,46 +56,39 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--blue);
   color: var(--body);
   font-family: var(--font-body);
   font-size: var(--step-0);
-  line-height: 1.65;
+  line-height: 1.6;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
-/* Display serif for headings. Instrument Serif ships one weight, so hierarchy
-   comes from size and colour rather than weight. */
+/* Display type is uppercase, heavy, and tracked wide. Tracking tightens as
+   the size grows, which keeps very large lines from falling apart. */
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 400;
-  color: var(--ink);
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-  text-transform: lowercase;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  line-height: 1.02;
+  letter-spacing: 0.06em;
   text-wrap: balance;
   margin: 0;
 }
-/* Below roughly 1.3rem the serif loses too much at these stroke widths, so
-   small headings fall back to the sans. */
-h4, h5, h6 { font-family: var(--font-body); font-weight: 600; color: var(--ink); margin: 0; }
+h1 { letter-spacing: 0.02em; }
 
 p { margin: 0; text-wrap: pretty; }
 
-a { color: var(--accent); text-decoration-color: rgba(37, 99, 168, 0.32); text-underline-offset: 3px; }
-a:hover { color: var(--accent-deep); text-decoration-color: currentColor; }
+a { color: var(--white); text-decoration-color: rgba(255, 255, 255, 0.4); text-underline-offset: 4px; }
+a:hover { text-decoration-color: currentColor; }
 
 img, svg, video { max-width: 100%; height: auto; display: block; }
 
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
+:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 
-::selection { background: rgba(37, 99, 168, 0.18); color: var(--ink); }
+::selection { background: rgba(255, 255, 255, 0.24); color: var(--white); }
 
 /* ------------------------------------------------------------------ Layout */
 .shell {
@@ -113,54 +97,38 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 }
 
 .section {
-  padding-block: clamp(4rem, 9vw, 7.5rem);
+  padding-block: clamp(4.5rem, 10vw, 9rem);
   scroll-margin-top: 5rem;
 }
-.section--tint {
-  background: var(--surface-sunk);
-  border-block: 1px solid var(--border);
-}
-
-/* Small uppercase label above a section title */
-.eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-}
-.eyebrow::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--border-strong), transparent);
-}
-
-.section-title { font-size: var(--step-3); margin-bottom: 0.85rem; }
-
-/* Full-height section: one idea per screen. */
+.section--tint { background: var(--blue-deep); }
+/* One idea per screen. */
 .section--full {
   min-height: 88svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.section-intro {
-  color: var(--muted);
-  max-width: 58ch;
-  font-size: var(--step-0);
-  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 0 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
 }
+.eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+.section-title { font-size: var(--step-3); margin-bottom: 1rem; }
+.section-intro { color: var(--muted); max-width: 56ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
 
 /* ------------------------------------------------------------------ Cards */
 .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--blue-raised);
+  border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: clamp(1.4rem, 2.4vw, 2rem);
 }
@@ -173,33 +141,28 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.72rem 1.35rem;
-  border-radius: 6px;
-  border: 1px solid var(--border-strong);
-  background: var(--surface);
-  font-family: var(--font-body);
-  font-size: var(--step--1);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: var(--ink);
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0;
+  border: 1px solid var(--rule-strong);
+  background: transparent;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white);
   text-decoration: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
-.btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
-.btn--primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #ffffff;
-}
-.btn--primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: #ffffff; }
+.btn:hover { background: var(--white); border-color: var(--white); color: var(--blue); }
+.btn--primary { background: var(--white); border-color: var(--white); color: var(--blue); }
+.btn--primary:hover { background: transparent; color: var(--white); border-color: var(--white); }
 
 /* ------------------------------------------------------------------ Utility */
 .meta {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.11em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -209,14 +172,11 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 }
 .skip-link {
   position: absolute; left: 0.5rem; top: -4rem; z-index: 100;
-  background: var(--accent); color: #fff; padding: 0.7rem 1.1rem;
-  border-radius: 6px; font-weight: 600; text-decoration: none;
-  transition: top 0.18s ease;
+  background: var(--white); color: var(--blue); padding: 0.7rem 1.1rem;
+  font-weight: 700; text-decoration: none; transition: top 0.18s ease;
 }
 .skip-link:focus { top: 0.5rem; }
 
-/* Scroll-in reveal, opt-in per element and safe without JS:
-   elements start visible and JS adds the animation only if it runs. */
 .js [data-reveal] { opacity: 0; transform: translateY(14px); }
 .js [data-reveal].is-visible {
   opacity: 1; transform: none;
