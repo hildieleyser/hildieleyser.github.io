@@ -1,5 +1,5 @@
 export const site = {
-  name: 'Hildelith Leyser',
+  name: 'Hildelith F. Leyser',
   shortName: 'Hildie Leyser',
   role: 'Neuroscientist & Neurotechnologist',
   title: 'Head of Research, Netholabs',
@@ -7,11 +7,22 @@ export const site = {
   summary:
     'Sensing hardware, closed-loop systems and the pipelines that make the data mean something.',
   location: 'London, United Kingdom',
-  email: 'hildie@netholabs.com',
+  email: 'hildieleyser@gmail.com',
   linkedin: 'https://www.linkedin.com/in/hildelith-leyser-382564206',
   github: 'https://github.com/hildieleyser',
   cv: '/Hildelith_Leyser_CV.pdf',
-  url: 'https://hildieleyser.github.io',
+  url: import.meta.env.SITE || 'https://hildieleyser.github.io',
+};
+
+/**
+ * Third-party services. Each is off until its code is filled in, so the site
+ * ships clean rather than loading a broken script.
+ */
+export const services = {
+  /** GoatCounter site code: the XXX in https://XXX.goatcounter.com */
+  goatcounter: '',
+  /** Loops form id: the last path segment of the form endpoint they give you. */
+  loopsFormId: '',
 };
 
 /** Short credibility strip under the hero. */

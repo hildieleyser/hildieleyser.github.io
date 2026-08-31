@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import WorkIndex from '../components/WorkIndex.astro';
 import NeuralField from '../components/NeuralField.astro';
 import Icon from '../components/Icon.astro';
+import Newsletter from '../components/Newsletter.astro';
 import { site, currently, capabilities, researchAreas } from '../data/site';
 
 const projects = (await getCollection('projects'))
@@ -20,16 +21,16 @@ const projects = (await getCollection('projects'))
   <section class="hero">
     <NeuralField />
     <div class="shell hero__inner">
-      <p class="hero__kicker"><span>Hildelith Leyser</span><span>Neurotechnologist</span></p>
-
       {/* Words sit on a 12-column grid at deliberately uneven positions, so the
           statement reads as a composition rather than three centred lines. */}
       <h1 class="hero__statement">
-        <span style="--col: 1; --span: 4">I turn</span>
-        <span style="--col: 6; --span: 7">behaviour</span>
-        <span style="--col: 3; --span: 5">into</span>
-        <span style="--col: 8; --span: 5">signal</span>
+        <span style="--col: 1; --span: 8">Hildelith F.</span>
+        <span style="--col: 5; --span: 8">Leyser</span>
       </h1>
+      <p class="hero__role">
+        <span style="--col: 3; --span: 5">Neuroscientist</span>
+        <span style="--col: 7; --span: 6">Neurotechnologist</span>
+      </p>
 
       <div class="hero__foot">
         <p>{site.location}</p>
@@ -87,6 +88,7 @@ const projects = (await getCollection('projects'))
           <li><span>{c.since}</span> {c.label}, {c.org}</li>
         ))}
       </ul>
+      <Newsletter />
       <div class="contact__links">
         <a class="btn" href={site.cv} download><Icon name="download" size={15} /> CV</a>
         <a class="btn" href={site.linkedin} rel="noopener" target="_blank"><Icon name="linkedin" size={15} /> LinkedIn</a>
@@ -109,18 +111,6 @@ const projects = (await getCollection('projects'))
   }
   .hero__inner { position: relative; z-index: 1; }
 
-  .hero__kicker {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem 2rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: clamp(2.5rem, 7vw, 5rem);
-  }
-
   .hero__statement {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -133,6 +123,19 @@ const projects = (await getCollection('projects'))
     grid-column: var(--col) / span var(--span);
     white-space: nowrap;
   }
+
+  .hero__role {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: 0.4rem;
+    margin-top: clamp(1.25rem, 3vw, 2.25rem);
+    font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero__role span { grid-column: var(--col) / span var(--span); }
 
   .hero__foot {
     display: flex;
@@ -169,11 +172,9 @@ const projects = (await getCollection('projects'))
 
   /* Below the grid breakpoint the composition collapses to full-width lines. */
   @media (max-width: 720px) {
-    .hero__statement span { grid-column: 1 / -1; white-space: normal; }
-    .hero__kicker { flex-direction: column; gap: 0.35rem; }
-  }
-
-  /* ----------------------------------------------------- Capabilities */
+    .hero__statement span,
+    .hero__role span { grid-column: 1 / -1; white-space: normal; }
+    /* ----------------------------------------------------- Capabilities */
   .caps { margin: 0; border-top: 1px solid var(--rule); }
   .caps__row {
     display: grid;

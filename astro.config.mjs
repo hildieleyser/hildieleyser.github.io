@@ -4,7 +4,10 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://hildieleyser.github.io',
+  // Netlify sets URL to the production domain. Override locally with SITE_URL.
+  // This feeds canonical links, Open Graph tags and the sitemap, so it must be
+  // the real public origin.
+  site: process.env.SITE_URL || process.env.URL || 'https://hildieleyser.github.io',
   integrations: [mdx(), sitemap()],
   image: {
     // Screenshots and photos both benefit from AVIF/WebP here; the source PNGs
