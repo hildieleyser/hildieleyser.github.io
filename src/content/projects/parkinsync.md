@@ -3,7 +3,7 @@ title: Parkinsync
 order: 6
 year: "2024"
 tag: McGill Biomechanics Society
-summary: EMG-driven exoskeleton concept for tremor-related motor support in Parkinson's disease.
+summary: "EMG exoskeleton for Parkinsonian tremor."
 role:
   - Led the project as senior advisor across an interdisciplinary mechanical and electronics team.
   - Specified the EMG sensing approach and how muscle activity drives the control logic.

@@ -3,7 +3,7 @@ title: Circuit Robot
 order: 2
 year: "2025"
 tag: Hugging Face LeRobot Worldwide Hackathon Winner
-summary: Robotic arm that assembles live electrical circuits autonomously, taking a hazardous manual task off human hands.
+summary: "Robot arm that assembles live electrical circuits on its own."
 role:
   - "Built the perception side: component recognition and pose estimation from the arm-mounted camera."
   - Worked the vision-to-manipulation handoff so detected components became reachable grasp targets.

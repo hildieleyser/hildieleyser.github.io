@@ -3,7 +3,7 @@ title: Wavelink
 order: 3
 year: "2024"
 tag: natHACKS 2024 · Neurosphere Award
-summary: Dual-EEG hyperscanning rig that measures inter-brain synchrony between two people in real time and feeds it back to them.
+summary: "Dual-EEG rig measuring synchrony between two brains, live."
 role:
   - Built the real-time signal processing chain from raw dual-stream EEG to a synchrony estimate.
   - Worked on the custom sensor hardware and the acquisition path feeding the two streams.

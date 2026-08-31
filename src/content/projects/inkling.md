@@ -3,7 +3,7 @@ title: Inkling
 order: 5
 year: "2024"
 tag: SSVEP brain-computer interface
-summary: An SSVEP speller that lets someone type using visual attention alone, aimed at communication when motor control is not available.
+summary: "SSVEP speller: typing by looking."
 role:
   - Built the SSVEP stimulus presentation and the frequency-tagged interface layout.
   - Implemented the decoding that maps steady-state visual evoked responses to character selections.

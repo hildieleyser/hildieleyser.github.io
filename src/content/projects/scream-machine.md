@@ -3,7 +3,7 @@ title: Scream Machine
 order: 9
 year: "2024"
 tag: Craziest Idea Prize · IC FemHack
-summary: A hand-built, hand-painted neurofeedback device that guides players from stress reactivity toward calm.
+summary: "Hand-painted neurofeedback device, stress in, calm out."
 role:
   - Built and painted the physical device.
   - Designed the feedback mapping from measured stress response to the device's output.

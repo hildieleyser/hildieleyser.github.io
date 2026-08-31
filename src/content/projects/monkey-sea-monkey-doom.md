@@ -3,7 +3,7 @@ title: Monkey Sea Monkey Doom
 order: 8
 year: "2024"
 tag: Scientific Game Jam · neurofeedback game
-summary: Neurofeedback game that trains the shift out of fight-or-flight and into adaptive decision-making.
+summary: "Neurofeedback game that rewards calm over reaction."
 role:
   - Co-built the game and the neurofeedback mapping from physiological arousal to game state.
   - Designed the progression that rewards downregulation rather than reaction speed.

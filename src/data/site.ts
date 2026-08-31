@@ -3,10 +3,9 @@ export const site = {
   shortName: 'Hildie Leyser',
   role: 'Neuroscientist & Neurotechnologist',
   title: 'Head of Research, Netholabs',
-  tagline:
-    'I build the sensing systems and analysis pipelines that turn human and animal behaviour into data you can model.',
+  tagline: 'I turn behaviour into signal.',
   summary:
-    'Neuroscientist and neurotechnologist working where hardware, signal processing and machine learning meet. I lead human neuroscience research at Netholabs, designing multimodal capture rigs across EEG, fNIRS, eye tracking, motion capture, IMUs and EMG, and building the pipelines that make the resulting data usable.',
+    'Sensing hardware, closed-loop systems and the pipelines that make the data mean something.',
   location: 'London, United Kingdom',
   email: 'hildie@netholabs.com',
   linkedin: 'https://www.linkedin.com/in/hildelith-leyser-382564206',

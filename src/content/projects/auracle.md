@@ -3,7 +3,7 @@ title: Auracle
 order: 1
 year: "2026"
 tag: Project Motherboard Hackathon Winner
-summary: Closed-loop wearable that senses airborne volatile organic compounds, scores exposure in real time and filters what you breathe.
+summary: "Wearable that senses airborne compounds and filters what you breathe."
 role:
   - Led the sensing concept and the mapping from raw gas-sensor response to an interpretable exposure score.
   - Specified the classification approach for distinguishing volatile organic compound signatures.

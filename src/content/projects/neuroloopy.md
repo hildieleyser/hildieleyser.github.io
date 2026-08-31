@@ -3,7 +3,7 @@ title: Neuroloopy
 order: 4
 year: "2025"
 tag: Open-source Python package
-summary: A Python package for real-time closed-loop neurofeedback from EEG and multimodal physiology, built to be reused across studies.
+summary: "Python package for real-time closed-loop neurofeedback."
 role:
   - Designed the package API around a streaming source, a processing chain and a feedback sink, so new studies swap components rather than rewrite the loop.
   - Implemented the real-time processing primitives for EEG and physiological signals.

@@ -1,0 +1,191 @@
+---
+import { Image } from 'astro:assets';
+import { stripBackdrop } from '../lib/diagram';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { projects: CollectionEntry<'projects'>[] }
+const { projects } = Astro.props;
+
+const diagrams = import.meta.glob<string>('../assets/projects/*.svg', { query: '?raw', import: 'default' });
+const rows = await Promise.all(
+  projects.map(async (p) => {
+    const raw = !p.data.cover && p.data.diagram
+      ? await diagrams[`../assets/projects/${p.data.diagram}`]?.()
+      : undefined;
+    return { project: p, diagramSvg: raw ? stripBackdrop(raw) : undefined };
+  }),
+);
+---
+
+<ol class="index">
+  {rows.map(({ project, diagramSvg }, i) => (
+    <li class="row" data-row>
+      <a href={`/projects/${project.id}/`}>
+        <span class="row__num">{String(i + 1).padStart(2, '0')}</span>
+        <span class="row__title">{project.data.title}</span>
+        <span class="row__desc">{project.data.summary}</span>
+        <span class="row__year">{project.data.year}</span>
+
+        {/* Preview follows the cursor on pointer devices; becomes an inline
+            thumbnail on touch and narrow screens, where hover does not exist. */}
+        <span class="row__preview" aria-hidden="true">
+          {project.data.cover ? (
+            <Image src={project.data.cover} alt="" widths={[280, 460]} sizes="320px" loading="lazy" />
+          ) : diagramSvg ? (
+            <span class="row__diagram" set:html={diagramSvg} />
+          ) : null}
+        </span>
+      </a>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+
+  .row { border-bottom: 1px solid var(--border); }
+  .row a {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 13rem) minmax(0, 1fr) 4rem;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: clamp(1.1rem, 2.2vw, 1.6rem) 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: padding-inline-start 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .row a:hover { padding-inline-start: 1.4rem; }
+  .row a::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .row a:hover::before, .row a:focus-visible::before { transform: scaleY(1); }
+
+  .row__num {
+    font-family: var(--font-body);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .row__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.15rem);
+    line-height: 1;
+    color: var(--ink);
+    transition: color 0.2s ease;
+  }
+  .row a:hover .row__title { color: var(--accent); }
+  .row__desc { color: var(--muted); font-size: 0.95rem; line-height: 1.45; }
+  .row__year {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .row__preview {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 40;
+    width: 320px;
+    aspect-ratio: 16 / 10;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 18px 40px -18px rgba(20, 22, 26, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+    transform: translate3d(var(--x, 0), var(--y, 0), 0) scale(0.96);
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .row__preview :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .row__diagram { display: grid; place-items: center; width: 100%; height: 100%; padding: 0.4rem; }
+  .row__diagram :global(svg) { width: 100%; height: 100%; }
+
+  /* Only pointer devices get the floating preview. */
+  @media (hover: hover) and (pointer: fine) and (min-width: 861px) {
+    .row__preview { display: block; }
+    .row.is-active .row__preview { opacity: 1; transform: translate3d(var(--x, 0), var(--y, 0), 0) scale(1); }
+  }
+
+  @media (max-width: 860px) {
+    .row a {
+      grid-template-columns: 2.5rem minmax(0, 1fr) 3rem;
+      grid-template-areas: 'num title year' '. desc desc';
+      gap: 0.4rem 1rem;
+    }
+    .row__num { grid-area: num; }
+    .row__title { grid-area: title; }
+    .row__year { grid-area: year; }
+    .row__desc { grid-area: desc; margin-top: 0.35rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .row a, .row a::before, .row__preview { transition: none; }
+    .row a:hover { padding-inline-start: 0.5rem; }
+  }
+</style>
+
+<script>
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-row]'));
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  if (rows.length && fine.matches) {
+    let raf = 0;
+    let active: HTMLElement | null = null;
+    let targetX = 0;
+    let targetY = 0;
+    let curX = 0;
+    let curY = 0;
+
+    const tick = () => {
+      // Ease toward the cursor so the preview trails rather than snaps.
+      curX += (targetX - curX) * 0.16;
+      curY += (targetY - curY) * 0.16;
+      const preview = active?.querySelector<HTMLElement>('.row__preview');
+      if (preview) {
+        preview.style.setProperty('--x', `${curX}px`);
+        preview.style.setProperty('--y', `${curY}px`);
+      }
+      raf = active ? requestAnimationFrame(tick) : 0;
+    };
+
+    for (const row of rows) {
+      // Keep the preview beside the cursor but always fully on screen, and
+      // biased right so it sits clear of the text the reader is scanning.
+      const place = (e: PointerEvent) => {
+        const pad = 20;
+        const w = 320;
+        const h = 200;
+        targetX = Math.min(e.clientX + 64, window.innerWidth - w - pad);
+        targetY = Math.min(Math.max(e.clientY - h / 2, pad), window.innerHeight - h - pad);
+      };
+
+      row.addEventListener('pointerenter', (e) => {
+        active = row;
+        row.classList.add('is-active');
+        place(e);
+        // Jump straight to the cursor on entry, then ease from there.
+        curX = targetX;
+        curY = targetY;
+        if (!raf) raf = requestAnimationFrame(tick);
+      });
+      row.addEventListener('pointermove', place);
+      row.addEventListener('pointerleave', () => {
+        row.classList.remove('is-active');
+        if (active === row) active = null;
+      });
+    }
+  }
+</script>

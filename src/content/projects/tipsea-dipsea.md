@@ -3,7 +3,7 @@ title: Tipsea Dipsea
 order: 7
 year: "2024"
 tag: NeuroHacks 2024 · Industry Prize
-summary: Underwater VR environment that uses the groove response and biofeedback to train cognitive and emotional control.
+summary: "Underwater VR that trains cognitive control through biofeedback."
 role:
   - Designed the VR task, adapting a Stroop paradigm into an underwater environment.
   - Worked the biofeedback integration that couples player physiology to the environment.
