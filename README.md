@@ -1,27 +1,38 @@
-# Hildelith Leyser — Portfolio
+# hildieleyser.github.io
 
-Personal portfolio for Hildelith Leyser, Neuroscientist & Neurotechnologist.
+Personal site for Hildelith Leyser, neuroscientist and neurotechnologist.
 
-## Live site
-[hildieleyser.github.io](https://hildieleyser.github.io/)
-
-## About
-PhD researcher working across social cognition, brain-computer interfaces, wearable
-sensing, robotics, and multimodal AI — from primate social decision-making to
-translational neurotechnology.
-
-## Sections
-- **Research** — embodied social decision-making, movement as cognition, multisensory social alignment, human–robot distinction
-- **Projects** — Wavelink, Circuit Robot, Auracle, Parkinsync, SSVEP Speller, Tipsea Dipsea, Monkey Sea Monkey Doom, real-time neurofeedback
-- **Ideas** — selected writing and manuscripts
-- **CV** — education, experience, training, skills, awards, and service
-
-## Tech
-React (Create React App), Tailwind CSS, Framer Motion. Hosted on GitHub Pages.
+Built with [Astro](https://astro.build). Every page is static HTML, so search
+engines and link previews read the real content rather than an empty shell.
 
 ## Develop
+
 ```bash
 npm install
-npm start      # local dev server
-npm run build  # production build
+npm run dev      # local dev server on :4321
+npm run build    # static build into dist/
+npm run preview  # serve the built site
 ```
+
+## Deploy
+
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site
+and publishes `dist/` to GitHub Pages. Nothing built is committed to the repo.
+
+## Editing content
+
+| What | Where |
+| --- | --- |
+| Projects | `src/content/projects/*.md` — one file per project, frontmatter plus prose |
+| Project images | `src/assets/projects/` — referenced from frontmatter, resized at build |
+| CV | `src/data/cv.ts` |
+| Bio, capabilities, research, writing | `src/data/site.ts` |
+| Colours, type scale, spacing | `src/styles/global.css` |
+| Social preview image | `public/og-default.png` |
+
+Adding a project means dropping a Markdown file into `src/content/projects/`.
+It picks up a card on the home page and its own page at `/projects/<filename>/`.
+The `order` field controls where it lands in the running order.
+
+Images live in `src/assets/` rather than `public/` so Astro can resize them and
+emit WebP. A 1.4 MB source PNG ships as roughly 30 kB.

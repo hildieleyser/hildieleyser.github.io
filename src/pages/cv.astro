@@ -1,0 +1,219 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { site, capabilities } from '../data/site';
+import {
+  experience, education, fellowships, awards,
+  publications, talks, invited, service, collaboration, languages,
+} from '../data/cv';
+
+const contents = [
+  { id: 'experience', label: 'Experience' },
+  { id: 'education', label: 'Education' },
+  { id: 'skills', label: 'Technical skills' },
+  { id: 'publications', label: 'Publications' },
+  { id: 'talks', label: 'Talks' },
+  { id: 'training', label: 'Training' },
+  { id: 'awards', label: 'Awards' },
+  { id: 'service', label: 'Service' },
+  { id: 'international', label: 'International' },
+];
+---
+
+<Base
+  title="CV"
+  description={`Curriculum vitae for ${site.name}: experience at Netholabs and RIKEN, neurotechnology and machine learning skills, publications, talks, fellowships and awards.`}
+>
+  <div class="cv">
+    <div class="shell">
+      <header class="cv__head">
+        <p class="eyebrow">Curriculum vitae</p>
+        <h1>{site.name}</h1>
+        <p class="cv__role">{site.title} · {site.location}</p>
+        <div class="cv__actions">
+          <a class="btn btn--primary" href={site.cv} download><Icon name="download" size={15} /> Download PDF</a>
+          <a class="btn" href={`mailto:${site.email}`}><Icon name="mail" size={15} /> {site.email}</a>
+        </div>
+      </header>
+
+      <div class="cv__layout">
+        <nav class="toc" aria-label="Sections">
+          <p class="toc__title">On this page</p>
+          <ul>{contents.map((c) => <li><a href={`#${c.id}`}>{c.label}</a></li>)}</ul>
+        </nav>
+
+        <div class="cv__body">
+          <section id="experience">
+            <h2>Experience</h2>
+            <ol class="timeline">
+              {experience.map((e) => (
+                <li>
+                  <p class="timeline__when">{e.when}</p>
+                  <div>
+                    <h3>{e.what}</h3>
+                    <p class="timeline__where">{e.where}</p>
+                    <p class="timeline__note">{e.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section id="education">
+            <h2>Education</h2>
+            <ol class="timeline">
+              {education.map((e) => (
+                <li>
+                  <p class="timeline__when">{e.when}</p>
+                  <div>
+                    <h3>{e.what}</h3>
+                    <p class="timeline__where">{e.where}</p>
+                    <p class="timeline__note">{e.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section id="skills">
+            <h2>Technical skills</h2>
+            <dl class="skills">
+              {capabilities.map((group) => (
+                <div>
+                  <dt>{group.area}</dt>
+                  <dd>{group.items.join(' · ')}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <section id="publications">
+            <h2>Publications and writing</h2>
+            <ul class="plain">{publications.map((p) => <li>{p}</li>)}</ul>
+          </section>
+
+          <section id="talks">
+            <h2>Conference talks</h2>
+            <ul class="plain">{talks.map((t) => <li>{t}</li>)}</ul>
+            <h3 class="subhead">Invited talks and teaching</h3>
+            <ul class="plain">{invited.map((t) => <li>{t}</li>)}</ul>
+          </section>
+
+          <section id="training">
+            <h2>Training and fellowships</h2>
+            <ol class="timeline timeline--tight">
+              {fellowships.map((f) => (
+                <li>
+                  <p class="timeline__when">{f.when}</p>
+                  <div>
+                    <h3>{f.what}</h3>
+                    <p class="timeline__where">{f.where}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section id="awards">
+            <h2>Awards</h2>
+            <ul class="plain plain--cols">{awards.map((a) => <li>{a}</li>)}</ul>
+          </section>
+
+          <section id="service">
+            <h2>Leadership and service</h2>
+            <ul class="plain">{service.map((s) => <li>{s}</li>)}</ul>
+          </section>
+
+          <section id="international">
+            <h2>International collaboration</h2>
+            <dl class="skills">
+              {collaboration.map((c) => (
+                <div>
+                  <dt>{c.where}</dt>
+                  <dd>{c.what}</dd>
+                </div>
+              ))}
+            </dl>
+            <h3 class="subhead">Languages</h3>
+            <p class="languages">{languages}</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .cv { padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; }
+  .cv__head { max-width: 46rem; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+  .cv__head h1 { font-size: var(--step-4); margin-bottom: 0.6rem; }
+  .cv__role { color: var(--gold); font-size: var(--step-1); }
+  .cv__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.9rem; }
+
+  .cv__layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); }
+  @media (max-width: 900px) { .cv__layout { grid-template-columns: 1fr; } }
+
+  .toc { position: sticky; top: 6rem; align-self: start; }
+  @media (max-width: 900px) {
+    .toc { position: static; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+    .toc ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+  }
+  .toc__title { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .toc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.65rem; }
+  .toc a { font-size: 0.88rem; color: var(--text-3); text-decoration: none; }
+  .toc a:hover, .toc a.is-active { color: var(--gold-bright); }
+
+  .cv__body { display: grid; gap: clamp(2.75rem, 6vw, 4.5rem); }
+  .cv__body section { scroll-margin-top: 6rem; }
+  .cv__body h2 {
+    font-size: var(--step-2);
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.75rem;
+  }
+  .subhead {
+    font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin: 2.25rem 0 1rem;
+  }
+
+  .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 2rem; }
+  .timeline--tight { gap: 1.25rem; }
+  .timeline li { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 1.25rem; }
+  @media (max-width: 620px) { .timeline li { grid-template-columns: 1fr; gap: 0.35rem; } }
+  .timeline__when { font-size: 0.78rem; letter-spacing: 0.07em; color: var(--gold); padding-top: 0.25rem; }
+  .timeline h3 { font-size: var(--step-0); font-weight: 600; margin-bottom: 0.2rem; }
+  .timeline__where { color: var(--text-2); font-size: 0.92rem; }
+  .timeline__note { color: var(--text-3); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6; }
+
+  .skills { margin: 0; display: grid; gap: 1.35rem; }
+  .skills div { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.25rem; }
+  @media (max-width: 620px) { .skills div { grid-template-columns: 1fr; gap: 0.3rem; } }
+  .skills dt { color: var(--text); font-weight: 500; font-size: 0.92rem; }
+  .skills dd { margin: 0; color: var(--text-2); font-size: 0.92rem; line-height: 1.6; }
+
+  .plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+  .plain li { color: var(--text-2); font-size: 0.94rem; line-height: 1.6; padding-left: 1.1rem; position: relative; }
+  .plain li::before {
+    content: ''; position: absolute; left: 0; top: 0.68em;
+    width: 4px; height: 4px; border-radius: 50%; background: var(--gold);
+  }
+  .plain--cols { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 0.75rem 2rem; }
+  .languages { color: var(--text-2); font-size: 0.94rem; }
+</style>
+
+<script>
+  // Mirror the page's active section in the table of contents.
+  const links = document.querySelectorAll<HTMLAnchorElement>('.toc a');
+  const map = new Map<string, HTMLAnchorElement>();
+  links.forEach((l) => map.set(l.getAttribute('href')!.slice(1), l));
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const link = map.get(entry.target.id);
+        if (link) link.classList.toggle('is-active', entry.isIntersecting);
+      }
+    },
+    { rootMargin: '-15% 0px -70% 0px' },
+  );
+  document.querySelectorAll('.cv__body section[id]').forEach((s) => io.observe(s));
+</script>

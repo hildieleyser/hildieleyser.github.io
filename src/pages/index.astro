@@ -1,0 +1,235 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import NeuralField from '../components/NeuralField.astro';
+import Icon from '../components/Icon.astro';
+import { site, currently, capabilities, researchAreas, writing } from '../data/site';
+
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base
+  title={site.name}
+  description={`${site.role} in London. ${site.tagline} Head of Research at Netholabs, working across EEG, wearables, computer vision and machine learning.`}
+  personSchema
+>
+  <!-- ------------------------------------------------------------ Hero -->
+  <section class="hero">
+    <NeuralField />
+    <div class="shell hero__inner">
+      <p class="hero__eyebrow">{site.location} · Available for collaboration</p>
+      <h1 class="hero__name">Hildelith Leyser</h1>
+      <p class="hero__role">{site.role}</p>
+      <p class="hero__tagline">{site.tagline}</p>
+      <p class="hero__summary">{site.summary}</p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#work">See selected work <Icon name="arrow" size={15} /></a>
+        <a class="btn" href={site.cv} download><Icon name="download" size={15} /> Download CV</a>
+        <a class="btn" href={`mailto:${site.email}`}><Icon name="mail" size={15} /> Get in touch</a>
+      </div>
+
+      <ul class="currently">
+        {currently.map((c) => (
+          <li>
+            <span class="currently__since">{c.since}</span>
+            <span class="currently__label">{c.label}</span>
+            <span class="currently__org">{c.org}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------ Work -->
+  <section id="work" class="section section--tint">
+    <div class="shell">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="section-title">Things I have built</h2>
+      <p class="section-intro">
+        Nine builds across wearables, robotics, brain-computer interfaces and closed-loop
+        neurofeedback. Each one has its own page with the system, the stack and what I did.
+      </p>
+      <div class="grid grid--3">
+        {projects.map((project, i) => <ProjectCard project={project} index={i} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------- Capabilities -->
+  <section id="capabilities" class="section">
+    <div class="shell">
+      <p class="eyebrow">Capabilities</p>
+      <h2 class="section-title">What I work with</h2>
+      <p class="section-intro">
+        The tools I use day to day, grouped by the part of the problem they solve.
+      </p>
+      <div class="grid grid--3 cap-grid">
+        {capabilities.map((group, i) => (
+          <div class="card cap" data-reveal={i}>
+            <h3>{group.area}</h3>
+            <ul>{group.items.map((item) => <li>{item}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- -------------------------------------------------------- Research -->
+  <section id="research" class="section section--tint">
+    <div class="shell">
+      <p class="eyebrow">Research</p>
+      <h2 class="section-title">The questions behind the builds</h2>
+      <p class="section-intro">
+        Doctoral and postdoctoral-level work on how social context shapes behaviour, and on
+        movement as a readable signature of cognition.
+      </p>
+      <div class="grid grid--2">
+        {researchAreas.map((area, i) => (
+          <article class="card research" data-reveal={i}>
+            <h3>{area.title}</h3>
+            <p>{area.body}</p>
+            <p class="meta">{area.meta}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------- Writing -->
+  <section id="writing" class="section">
+    <div class="shell">
+      <p class="eyebrow">Writing</p>
+      <h2 class="section-title">Papers and essays</h2>
+      <div class="grid grid--3">
+        {writing.map((item, i) => (
+          <article class="card writing" data-reveal={i}>
+            <h3>{item.title}</h3>
+            <p class="meta">{item.status}</p>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="more-link"><a href="/cv/#publications">Full publication and talk list <Icon name="arrow" size={14} /></a></p>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------- Contact -->
+  <section id="contact" class="section section--tint">
+    <div class="shell contact">
+      <p class="eyebrow">Contact</p>
+      <h2 class="section-title">Let's talk</h2>
+      <p class="contact__body">
+        I am interested in work that puts neurotechnology in front of real people: sensing
+        hardware, closed-loop systems, and the analysis that makes the data mean something.
+        If that is what you are building, get in touch.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href={`mailto:${site.email}`}><Icon name="mail" size={15} /> {site.email}</a>
+        <a class="btn" href={site.linkedin} rel="noopener" target="_blank"><Icon name="linkedin" size={15} /> LinkedIn</a>
+        <a class="btn" href={site.github} rel="noopener" target="_blank"><Icon name="github" size={15} /> GitHub</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(4rem, 11vw, 8.5rem) clamp(3.5rem, 8vw, 6rem);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero__inner { position: relative; z-index: 1; max-width: 60rem; }
+
+  .hero__eyebrow {
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero__eyebrow::before {
+    content: '';
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(205, 164, 94, 0.16);
+  }
+
+  .hero__name {
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 0.9rem;
+  }
+  .hero__role {
+    font-size: var(--step-1);
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    margin-bottom: 1.75rem;
+  }
+  .hero__tagline {
+    font-size: var(--step-2);
+    color: var(--text);
+    font-weight: 350;
+    line-height: 1.4;
+    max-width: 30ch;
+    margin-bottom: 1.25rem;
+  }
+  .hero__summary { color: var(--text-2); max-width: 60ch; }
+
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 2.25rem; }
+
+  .currently {
+    list-style: none;
+    margin: clamp(2.75rem, 6vw, 4.5rem) 0 0;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid var(--border);
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+  .currently li { display: grid; gap: 0.25rem; }
+  .currently__since { font-size: 0.7rem; letter-spacing: 0.14em; color: var(--gold); }
+  .currently__label { color: var(--text); font-weight: 500; }
+  .currently__org { font-size: 0.85rem; color: var(--text-3); }
+
+  .cap h3 {
+    font-size: 0.78rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .cap ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .cap li {
+    font-size: 0.83rem;
+    color: var(--text-2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.22rem 0.7rem;
+  }
+
+  .research h3 { font-size: var(--step-1); margin-bottom: 0.75rem; }
+  .research p { color: var(--text-2); }
+  .research .meta { margin-top: 1rem; }
+
+  .writing h3 { font-size: var(--step-1); margin-bottom: 0.4rem; }
+  .writing .meta { margin-bottom: 0.9rem; }
+  .writing p { color: var(--text-2); font-size: 0.94rem; }
+
+  .more-link { margin-top: 2rem; }
+  .more-link a { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; text-decoration: none; }
+
+  .contact { max-width: 46rem; }
+  .contact__body { color: var(--text-2); font-size: var(--step-1); line-height: 1.6; }
+</style>

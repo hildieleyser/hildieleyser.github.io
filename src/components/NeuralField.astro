@@ -1,0 +1,147 @@
+---
+/**
+ * Ambient neuron field behind the hero.
+ *
+ * Fixes over the previous version: device-pixel-ratio aware so it is not blurry
+ * on retina, masked with a radial gradient so lines never cross the headline,
+ * paused when scrolled out of view or when the tab is hidden, and rendered as a
+ * single static frame when the visitor prefers reduced motion.
+ */
+---
+<canvas id="neural-field" aria-hidden="true"></canvas>
+
+<style>
+  #neural-field {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    /* Fade the field out behind the centre column and at every edge, so the
+       hero text always sits on flat background rather than on top of lines. */
+    -webkit-mask-image:
+      radial-gradient(ellipse 46% 40% at 50% 46%, transparent 30%, #000 78%),
+      linear-gradient(180deg, #000 55%, transparent 96%);
+    mask-image:
+      radial-gradient(ellipse 46% 40% at 50% 46%, transparent 30%, #000 78%),
+      linear-gradient(180deg, #000 55%, transparent 96%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('neural-field') as HTMLCanvasElement | null;
+  const ctx = canvas?.getContext('2d');
+
+  if (canvas && ctx) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const GOLD = '205, 164, 94';
+
+    type Node = { x: number; y: number; vx: number; vy: number; r: number; phase: number; links: Node[] };
+    let nodes: Node[] = [];
+    let raf = 0;
+    let running = false;
+    let w = 0;
+    let h = 0;
+
+    const seed = () => {
+      const rect = canvas.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      // Cap DPR at 2: beyond that the extra pixels cost far more than they show.
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Scale node count with area so a phone does not run a desktop's workload.
+      const count = Math.max(14, Math.min(34, Math.round((w * h) / 46000)));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        r: Math.random() * 1.6 + 1,
+        phase: Math.random() * Math.PI * 2,
+        links: [],
+      }));
+      for (const n of nodes) {
+        n.links = nodes
+          .filter((o) => o !== n)
+          .sort((a, b) => Math.hypot(a.x - n.x, a.y - n.y) - Math.hypot(b.x - n.x, b.y - n.y))
+          .slice(0, 3);
+      }
+    };
+
+    const draw = (animate: boolean) => {
+      ctx.clearRect(0, 0, w, h);
+      for (const n of nodes) {
+        if (animate) {
+          n.x += n.vx;
+          n.y += n.vy;
+          n.phase += 0.012;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+        }
+        for (const o of n.links) {
+          const d = Math.hypot(o.x - n.x, o.y - n.y);
+          if (d > 230) continue;
+          const signal = Math.sin(n.phase - d / 50) * 0.5 + 0.5;
+          const fade = 1 - d / 230;
+          ctx.beginPath();
+          ctx.moveTo(n.x, n.y);
+          ctx.lineTo(o.x, o.y);
+          ctx.strokeStyle = `rgba(${GOLD}, ${0.16 * signal * fade})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+      for (const n of nodes) {
+        const pulse = animate ? Math.sin(n.phase) * 0.35 + 1 : 1;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * pulse, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${GOLD}, 0.42)`;
+        ctx.fill();
+      }
+    };
+
+    const loop = () => {
+      draw(true);
+      raf = requestAnimationFrame(loop);
+    };
+
+    const start = () => {
+      if (running || reduced) return;
+      running = true;
+      raf = requestAnimationFrame(loop);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
+    seed();
+    draw(!reduced ? true : false);
+
+    if (!reduced) {
+      // Only animate while the hero is actually on screen.
+      new IntersectionObserver(
+        ([entry]) => (entry.isIntersecting && !document.hidden ? start() : stop()),
+        { threshold: 0 },
+      ).observe(canvas);
+
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    }
+
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        seed();
+        draw(!reduced);
+      }, 180);
+    });
+  }
+</script>
