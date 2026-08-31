@@ -149,7 +149,7 @@ const projects = (await getCollection('projects'))
     font-size: 0.74rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
@@ -158,34 +158,38 @@ const projects = (await getCollection('projects'))
   .hero__eyebrow::before {
     content: '';
     width: 7px; height: 7px; border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 0 4px rgba(205, 164, 94, 0.16);
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(37, 99, 168, 0.16);
   }
 
   .hero__name {
     font-family: var(--font-display);
     font-size: var(--step-4);
     font-weight: 400;
-    letter-spacing: 0.01em;
-    line-height: 1.05;
-    color: var(--text);
-    margin-bottom: 0.9rem;
+    letter-spacing: -0.015em;
+    line-height: 0.98;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
   }
   .hero__role {
-    font-size: var(--step-1);
-    color: var(--gold);
-    letter-spacing: 0.02em;
-    margin-bottom: 1.75rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.17em;
+    color: var(--accent);
+    margin-bottom: 1.9rem;
   }
   .hero__tagline {
     font-size: var(--step-2);
-    color: var(--text);
-    font-weight: 350;
-    line-height: 1.4;
-    max-width: 30ch;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: -0.012em;
+    max-width: 32ch;
     margin-bottom: 1.25rem;
   }
-  .hero__summary { color: var(--text-2); max-width: 60ch; }
+  .hero__summary { color: var(--body); max-width: 60ch; }
 
   .hero__actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 2.25rem; }
 
@@ -199,37 +203,39 @@ const projects = (await getCollection('projects'))
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
   }
   .currently li { display: grid; gap: 0.25rem; }
-  .currently__since { font-size: 0.7rem; letter-spacing: 0.14em; color: var(--gold); }
-  .currently__label { color: var(--text); font-weight: 500; }
-  .currently__org { font-size: 0.85rem; color: var(--text-3); }
+  .currently__since { font-size: 0.7rem; letter-spacing: 0.14em; color: var(--accent); }
+  .currently__label { color: var(--ink); font-weight: 500; }
+  .currently__org { font-size: 0.85rem; color: var(--muted); }
 
   .cap h3 {
-    font-size: 0.78rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.75rem;
     letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     margin-bottom: 1rem;
   }
   .cap ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .cap li {
     font-size: 0.83rem;
-    color: var(--text-2);
+    color: var(--body);
     border: 1px solid var(--border);
     border-radius: 100px;
     padding: 0.22rem 0.7rem;
   }
 
   .research h3 { font-size: var(--step-1); margin-bottom: 0.75rem; }
-  .research p { color: var(--text-2); }
+  .research p { color: var(--body); }
   .research .meta { margin-top: 1rem; }
 
   .writing h3 { font-size: var(--step-1); margin-bottom: 0.4rem; }
   .writing .meta { margin-bottom: 0.9rem; }
-  .writing p { color: var(--text-2); font-size: 0.94rem; }
+  .writing p { color: var(--body); font-size: 0.94rem; }
 
   .more-link { margin-top: 2rem; }
   .more-link a { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; text-decoration: none; }
 
   .contact { max-width: 46rem; }
-  .contact__body { color: var(--text-2); font-size: var(--step-1); line-height: 1.6; }
+  .contact__body { color: var(--body); font-size: var(--step-1); line-height: 1.6; }
 </style>

@@ -21,10 +21,10 @@
     /* Fade the field out behind the centre column and at every edge, so the
        hero text always sits on flat background rather than on top of lines. */
     -webkit-mask-image:
-      radial-gradient(ellipse 46% 40% at 50% 46%, transparent 30%, #000 78%),
+      radial-gradient(ellipse 44% 38% at 50% 46%, transparent 26%, #000 74%),
       linear-gradient(180deg, #000 55%, transparent 96%);
     mask-image:
-      radial-gradient(ellipse 46% 40% at 50% 46%, transparent 30%, #000 78%),
+      radial-gradient(ellipse 44% 38% at 50% 46%, transparent 26%, #000 74%),
       linear-gradient(180deg, #000 55%, transparent 96%);
     -webkit-mask-composite: source-in;
     mask-composite: intersect;
@@ -37,7 +37,7 @@
 
   if (canvas && ctx) {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const GOLD = '205, 164, 94';
+    const INK = '37, 99, 168';
 
     type Node = { x: number; y: number; vx: number; vy: number; r: number; phase: number; links: Node[] };
     let nodes: Node[] = [];
@@ -93,7 +93,7 @@
           ctx.beginPath();
           ctx.moveTo(n.x, n.y);
           ctx.lineTo(o.x, o.y);
-          ctx.strokeStyle = `rgba(${GOLD}, ${0.16 * signal * fade})`;
+          ctx.strokeStyle = `rgba(${INK}, ${0.20 * signal * fade})`;
           ctx.lineWidth = 0.7;
           ctx.stroke();
         }
@@ -102,7 +102,7 @@
         const pulse = animate ? Math.sin(n.phase) * 0.35 + 1 : 1;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r * pulse, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${GOLD}, 0.42)`;
+        ctx.fillStyle = `rgba(${INK}, 0.34)`;
         ctx.fill();
       }
     };

@@ -147,7 +147,7 @@ const contents = [
   .cv { padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; }
   .cv__head { max-width: 46rem; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
   .cv__head h1 { font-size: var(--step-4); margin-bottom: 0.6rem; }
-  .cv__role { color: var(--gold); font-size: var(--step-1); }
+  .cv__role { color: var(--accent); font-size: var(--step-1); }
   .cv__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.9rem; }
 
   .cv__layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); }
@@ -158,10 +158,10 @@ const contents = [
     .toc { position: static; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
     .toc ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   }
-  .toc__title { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .toc__title { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
   .toc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.65rem; }
-  .toc a { font-size: 0.88rem; color: var(--text-3); text-decoration: none; }
-  .toc a:hover, .toc a.is-active { color: var(--gold-bright); }
+  .toc a { font-size: 0.88rem; color: var(--muted); text-decoration: none; }
+  .toc a:hover, .toc a.is-active { color: var(--accent-deep); }
 
   .cv__body { display: grid; gap: clamp(2.75rem, 6vw, 4.5rem); }
   .cv__body section { scroll-margin-top: 6rem; }
@@ -172,33 +172,35 @@ const contents = [
     margin-bottom: 1.75rem;
   }
   .subhead {
-    font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--gold); margin: 2.25rem 0 1rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin: 2.25rem 0 1rem;
   }
 
   .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 2rem; }
   .timeline--tight { gap: 1.25rem; }
   .timeline li { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 1.25rem; }
   @media (max-width: 620px) { .timeline li { grid-template-columns: 1fr; gap: 0.35rem; } }
-  .timeline__when { font-size: 0.78rem; letter-spacing: 0.07em; color: var(--gold); padding-top: 0.25rem; }
-  .timeline h3 { font-size: var(--step-0); font-weight: 600; margin-bottom: 0.2rem; }
-  .timeline__where { color: var(--text-2); font-size: 0.92rem; }
-  .timeline__note { color: var(--text-3); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6; }
+  .timeline__when { font-size: 0.78rem; letter-spacing: 0.07em; color: var(--accent); padding-top: 0.25rem; }
+  .timeline h3 { font-family: var(--font-body); font-size: var(--step-0); font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+  .timeline__where { color: var(--body); font-size: 0.92rem; }
+  .timeline__note { color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.6; }
 
   .skills { margin: 0; display: grid; gap: 1.35rem; }
   .skills div { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.25rem; }
   @media (max-width: 620px) { .skills div { grid-template-columns: 1fr; gap: 0.3rem; } }
-  .skills dt { color: var(--text); font-weight: 500; font-size: 0.92rem; }
-  .skills dd { margin: 0; color: var(--text-2); font-size: 0.92rem; line-height: 1.6; }
+  .skills dt { color: var(--ink); font-weight: 500; font-size: 0.92rem; }
+  .skills dd { margin: 0; color: var(--body); font-size: 0.92rem; line-height: 1.6; }
 
   .plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
-  .plain li { color: var(--text-2); font-size: 0.94rem; line-height: 1.6; padding-left: 1.1rem; position: relative; }
+  .plain li { color: var(--body); font-size: 0.94rem; line-height: 1.6; padding-left: 1.1rem; position: relative; }
   .plain li::before {
     content: ''; position: absolute; left: 0; top: 0.68em;
-    width: 4px; height: 4px; border-radius: 50%; background: var(--gold);
+    width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
   }
   .plain--cols { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 0.75rem 2rem; }
-  .languages { color: var(--text-2); font-size: 0.94rem; }
+  .languages { color: var(--body); font-size: 0.94rem; }
 </style>
 
 <script>

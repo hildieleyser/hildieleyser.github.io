@@ -27,7 +27,7 @@ const year = new Date().getFullYear();
     border-top: 1px solid var(--border);
     padding-block: clamp(2.5rem, 5vw, 4rem) 2rem;
     margin-top: clamp(3rem, 7vw, 6rem);
-    background: #121212;
+    background: var(--surface-sunk);
   }
   .inner {
     display: flex;
@@ -36,17 +36,17 @@ const year = new Date().getFullYear();
     justify-content: space-between;
     align-items: flex-start;
   }
-  .name { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.13em; font-size: 0.85rem; color: var(--text); }
-  .role { font-size: 0.82rem; color: var(--text-3); margin-top: 0.4rem; }
+  .name { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.1; color: var(--ink); }
+  .role { font-size: 0.82rem; color: var(--muted); margin-top: 0.4rem; }
   .links { display: grid; gap: 0.7rem; }
   .links a {
     display: inline-flex; align-items: center; gap: 0.6rem;
-    font-size: 0.9rem; color: var(--text-2); text-decoration: none;
+    font-size: 0.9rem; color: var(--body); text-decoration: none;
   }
-  .links a:hover { color: var(--gold-bright); }
+  .links a:hover { color: var(--accent-deep); }
   .colophon {
     display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
     margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
-    font-size: 0.78rem; color: var(--text-3);
+    font-size: 0.78rem; color: var(--muted);
   }
 </style>

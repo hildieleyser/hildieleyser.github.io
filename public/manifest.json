@@ -1,14 +1,27 @@
 {
-  "name": "Hildelith Leyser — Neuroscientist & Neurotechnologist",
+  "name": "Hildelith Leyser \u2014 Neuroscientist & Neurotechnologist",
   "short_name": "Hildelith Leyser",
   "description": "Neuroscientist and neurotechnologist working across EEG, wearables, computer vision and machine learning.",
   "icons": [
-    { "src": "/favicon.ico", "sizes": "64x64 32x32 24x24 16x16", "type": "image/x-icon" },
-    { "src": "/logo192.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "/logo512.png", "type": "image/png", "sizes": "512x512", "purpose": "any maskable" }
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#0e0e0e",
-  "background_color": "#0e0e0e"
+  "theme_color": "#fbfaf7",
+  "background_color": "#fbfaf7"
 }
