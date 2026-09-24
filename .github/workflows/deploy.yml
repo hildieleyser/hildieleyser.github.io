@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 
 # Netlify (netlify.toml) deploys the same dist/ once it is connected.
-# Until then this keeps hildieleyser.github.io live.
+# Until then this keeps hildieleyser.com (GitHub Pages custom domain) live.
 on:
   push:
     branches: [main]
@@ -28,7 +28,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          SITE_URL: https://hildieleyser.github.io
+          SITE_URL: https://hildieleyser.com
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist

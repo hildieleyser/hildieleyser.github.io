@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hildieleyser.github.io/sitemap-index.xml
+Sitemap: https://hildieleyser.com/sitemap-index.xml

@@ -7,7 +7,7 @@ export default defineConfig({
   // Netlify sets URL to the production domain. Override locally with SITE_URL.
   // This feeds canonical links, Open Graph tags and the sitemap, so it must be
   // the real public origin.
-  site: process.env.SITE_URL || process.env.URL || 'https://hildieleyser.github.io',
+  site: process.env.SITE_URL || process.env.URL || 'https://hildieleyser.com',
   integrations: [mdx(), sitemap()],
   image: {
     // Screenshots and photos both benefit from AVIF/WebP here; the source PNGs

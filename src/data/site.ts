@@ -11,7 +11,7 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/hildelith-leyser-382564206',
   github: 'https://github.com/hildieleyser',
   cv: '/Hildelith_Leyser_CV.pdf',
-  url: import.meta.env.SITE || 'https://hildieleyser.github.io',
+  url: import.meta.env.SITE || 'https://hildieleyser.com',
 };
 
 /**
