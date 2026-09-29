@@ -1,9 +1,9 @@
 export const experience = [
   {
-    when: '2026–Present',
+    when: 'Mar–Aug 2026',
     what: 'Head of Research',
     where: 'Netholabs Ltd, London',
-    note: 'Lead human neuroscience research across multimodal capture, protocol design and device integration. Built workflows combining EEG, fNIRS, eye tracking, motion capture, IMUs, EMG and LSL/XDF synchronisation.',
+    note: 'Led human neuroscience research across multimodal capture, protocol design and device integration. Built workflows combining EEG, fNIRS, eye tracking, motion capture, IMUs, EMG and LSL/XDF synchronisation.',
   },
   {
     when: '2026–Present',
@@ -24,17 +24,17 @@ export const experience = [
     note: 'Designed and ran a 3D social foraging task in macaques. Built behavioural analysis pipelines and applied DeepLabCut, SLEAP and YOLO for pose estimation.',
   },
   {
-    when: '2023–2025',
-    what: 'PhD Researcher',
-    where: 'McGill Social and Sensory Brain Mechanisms Lab',
+    when: '2023–2026',
+    what: 'Graduate Researcher',
+    where: 'McGill University / RIKEN Center for Brain Science',
     note: 'Social cognition, sensory processing, awake fMRI paradigms, movement kinematics and computational social reward valuation.',
   },
 ];
 
 export const education = [
   {
-    when: '2023–2025',
-    what: 'PhD in Neuroscience (incomplete)',
+    when: '2023–2026',
+    what: 'Graduate study, coursework completed (GPA 4.0/4.0)',
     where: 'McGill University, Integrated Program in Neuroscience',
     note: 'Research across McGill and RIKEN on social decision-making, embodied cognition, neurotechnology and computational models of behaviour.',
   },
